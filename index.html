@@ -1,0 +1,1731 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Mentalis — Milliy Sertifikatga tayyorgarlik</title>
+<meta name="description" content="Milliy Sertifikat (MS) imtihoniga chuqur tayyorgarlik: rasmiy formatdagi testlar, mavzu bo‘yicha zaif joylarni aniqlash va o‘zbekcha AI yordamchi.">
+<meta name="theme-color" content="#2F4BFF">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mentalis — Milliy Sertifikatga tayyorgarlik">
+<meta property="og:description" content="MS imtihoniga chuqur tayyorgarlik. Rasmiy formatdagi testlar, zaif mavzularni aniqlash, o‘zbekcha AI yordamchi.">
+<meta property="og:locale" content="uz_UZ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap">
+<style>
+/* Single light theme by design choice (oq fon). Every color is explicit. */
+:root{
+  --bg:#FFFFFF; --surface:#F6F6F3; --surface2:#EEEEE9; --border:#E6E6E0; --border2:#D3D3CB;
+  --fg:#0E0E0C; --fg2:#55554F; --muted:#6B6B63;
+  --accent:#2F4BFF; --accent-h:#2440E6; --accent-soft:#EEF1FF; --accent-ink:#1A2FCC;
+  --yellow:#FFC93C; --yellow-soft:#FFF7DD; --yellow-ink:#8A5A00;
+  --green:#12A150; --green-ink:#0B7A3B; --green-soft:#E8F6EE;
+  --red:#E5484D; --red-ink:#C4262B; --red-soft:#FDEDED;
+  --white:#FFFFFF;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sans:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --serif:'Instrument Serif',Georgia,'Times New Roman',serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.55;margin:0;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:balance;font-weight:600;letter-spacing:-.035em;line-height:1.04}
+em.s{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent);letter-spacing:-.01em;font-size:1.12em;line-height:.9}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+.mono{font-family:var(--mono)}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+
+/* buttons */
+.btn{max-width:100%;text-align:center;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 22px;border-radius:14px;font-weight:600;font-size:16px;text-decoration:none;transition:background .2s,transform .15s var(--ease),border-color .2s;white-space:nowrap}
+.btn svg{transition:transform .25s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.btn:active{transform:scale(.98)}
+.btn-p{background:var(--accent);color:var(--white)}
+.btn-p:hover{background:var(--accent-h)}
+.btn-s{background:var(--bg);border:1px solid var(--border2);color:var(--fg)}
+.btn-s:hover{border-color:var(--fg2)}
+.btn-d{background:var(--fg);color:var(--white)}
+.btn-w{background:var(--white);color:var(--accent)}
+.btn-sm{padding:9px 16px;font-size:14px;border-radius:10px}
+.btn-block{width:100%}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color .3s;padding-top:env(safe-area-inset-top,0px)}
+.nav.sc{border-bottom-color:var(--border)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{min-height:44px;display:flex;align-items:center;gap:9px;font-weight:600;font-size:18px;letter-spacing:-.03em;text-decoration:none}
+.logo i{width:30px;height:30px;border-radius:9px;background:var(--accent);display:grid;place-items:center}
+.links{display:flex;gap:28px;font-size:15px;font-weight:500;color:var(--fg2)}
+.links a{text-decoration:none;transition:color .2s}
+.links a:hover{color:var(--fg)}
+.tag-new{font-size:11px;font-weight:600;color:var(--yellow-ink);background:var(--yellow-soft);padding:2px 7px;border-radius:6px;margin-left:6px}
+.nav-act{display:flex;align-items:center;gap:8px}
+.nav-login{font-size:15px;font-weight:500;padding:8px 10px;text-decoration:none}
+.burger{width:44px;height:44px;display:none;place-items:center;border-radius:10px}
+.sheet{position:fixed;inset:0;z-index:60;background:var(--bg);padding:calc(env(safe-area-inset-top,0px) + 12px) max(20px,env(safe-area-inset-right,0px)) 24px max(20px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:8px}
+.sheet a.l{font-size:28px;font-weight:600;letter-spacing:-.03em;text-decoration:none;padding:10px 0;border-bottom:1px solid var(--border)}
+.sheet-top{display:flex;justify-content:space-between;align-items:center;height:52px;margin-bottom:12px}
+@media (max-width:900px){.links,.nav-act .btn{display:none}.burger{display:grid}}
+
+/* hero */
+.hero{padding:40px 0 56px}
+.hero-g{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:22px;min-width:0}
+.pill{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;padding:5px 12px 5px 6px;border-radius:100px;background:var(--surface);border:1px solid var(--border);font-size:13px;font-weight:500;color:var(--fg2)}
+.pill b{background:var(--green-ink);color:var(--white);font-size:11px;font-weight:600;padding:2px 8px;border-radius:100px}
+.hero h1{font-size:clamp(40px,6.4vw,74px)}
+.hero h1 em.s{font-size:1.13em}
+.lead{font-size:clamp(16px,1.6vw,19px);color:var(--fg2);max-width:520px}
+.facts{display:flex;gap:28px;flex-wrap:wrap;padding-top:22px;border-top:1px solid var(--border);margin-top:6px}
+.facts div{display:flex;flex-direction:column}
+.facts b{font-size:26px;font-weight:600;letter-spacing:-.04em}
+.facts span{font-size:13px;color:var(--muted)}
+@media (max-width:900px){.hero{padding:20px 0 40px}.hero-g{grid-template-columns:1fr;gap:28px}.facts,.hero-src{display:none}}
+
+/* demo card */
+.demo{border:1px solid var(--border);border-radius:24px;padding:18px;background:var(--bg);min-width:0;position:relative}
+.demo h3{font-size:16px;letter-spacing:-.01em;font-weight:600;margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:100px;border:1px solid var(--border);font-size:14px;font-weight:500;transition:background .2s,border-color .2s,color .2s}
+.chip:hover{border-color:var(--border2)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--white)}
+.chip .ck{display:none}
+.chip[aria-pressed="true"] .ck{display:block}
+.chip.more{color:var(--muted)}
+.demo-meta{text-align:center;font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:10px}
+.demo-note{font-size:12px;color:var(--yellow-ink);background:var(--yellow-soft);border-radius:10px;padding:8px 10px;margin-top:10px}
+.qh{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--fg2);font-weight:500}
+.segs{display:flex;gap:4px;margin:12px 0 16px}
+.segs i{flex:1;height:4px;border-radius:2px;background:var(--surface2);transition:background .3s}
+.segs i.ok{background:var(--green)} .segs i.no{background:var(--red)} .segs i.cur{background:var(--accent)}
+.qt{font-size:19px;font-weight:500;letter-spacing:-.01em;line-height:1.4;margin-bottom:14px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;border:1px solid var(--border);text-align:left;font-size:16px;font-weight:500;transition:border-color .2s,background .2s,transform .15s var(--ease)}
+.opt:hover:not([disabled]){border-color:var(--border2);background:var(--surface)}
+.opt:active:not([disabled]){transform:scale(.99)}
+.opt .k{width:28px;height:28px;border-radius:8px;background:var(--surface);display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--fg2);flex-shrink:0;transition:background .2s,color .2s}
+.opt .v{flex:1}
+.opt .st{font-size:12px;font-weight:600;display:none;align-items:center;gap:4px}
+.opt.ok{border-color:var(--green);background:var(--green-soft);border-width:1.5px}
+.opt.ok .k{background:var(--green);color:var(--white)} .opt.ok .st{display:flex;color:var(--green-ink)}
+.opt.no{border-color:var(--red);background:var(--red-soft);border-width:1.5px}
+.opt.no .k{background:var(--red);color:var(--white)} .opt.no .st{display:flex;color:var(--red-ink)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:12px;border-radius:14px;padding:14px;font-size:14px;line-height:1.5;animation:pop .45s var(--ease)}
+.fb.good{background:var(--green-soft);color:var(--green-ink)}
+.fb.ai{background:var(--yellow-soft);color:var(--fg)}
+.fb .h{display:flex;align-items:center;gap:6px;font-weight:600;font-size:13px;margin-bottom:6px}
+.fb.ai .h{color:var(--yellow-ink)}
+.fb-next{margin-top:12px}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.res{text-align:left;animation:pop .5s var(--ease)}
+.res .grade{display:flex;align-items:center;gap:14px;margin:6px 0 14px}
+.res .grade b{font-size:84px;font-weight:600;letter-spacing:-.06em;color:var(--accent);line-height:.9}
+.res .grade small{display:block;font-size:13px;color:var(--muted)}
+.res .grade strong{font-size:20px;letter-spacing:-.02em;line-height:1.25;display:block}
+.res .grade .of{font-size:.42em;color:var(--muted);letter-spacing:0;margin-left:2px}
+.weak{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.weak span{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:6px 10px;border-radius:100px;background:var(--yellow-soft);color:var(--yellow-ink)}
+.res .acts{display:flex;flex-direction:column;gap:8px}
+.rs-h{font-size:13px;font-weight:600;color:var(--fg2);margin-bottom:8px}
+.rs-top{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:6px;counter-reset:rt}
+.rs-top li{display:flex;align-items:baseline;gap:10px;padding:10px 12px;border-radius:12px;background:var(--yellow-soft);color:var(--yellow-ink)}
+.rs-top li::before{counter-increment:rt;content:counter(rt);font-family:var(--mono);font-size:12px;font-weight:600;min-width:12px}
+.rs-top b{font-size:15px;font-weight:600}
+.rs-top small{margin-left:auto;font-size:12px;opacity:.85}
+.rs-none{font-size:14px;color:var(--fg2);margin-bottom:12px}
+.rs-row{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;color:var(--fg2);padding:10px 0;border-top:1px solid var(--border)}
+.rs-row svg{flex-shrink:0;margin-top:2px;color:var(--accent)}
+.rs-row b{color:var(--fg);font-weight:600}
+.rs-row.tip svg{color:var(--yellow-ink)}
+.rs-links{display:flex;justify-content:center;gap:4px;flex-wrap:wrap}
+.res .acts{margin-top:6px}
+.res .acts .btn{white-space:normal;text-align:center;line-height:1.3;padding-left:16px;padding-right:16px;min-height:52px;height:auto}
+
+.linkbtn{font-size:14px;font-weight:600;color:var(--accent);text-align:center;padding:8px;min-height:44px}
+
+
+/* sections */
+.sec{padding:96px 0}
+.sec.alt{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.lab{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--fg2);margin-bottom:18px}
+.lab b{color:var(--accent);font-weight:500}
+.lab i{width:18px;height:1px;background:var(--border2)}
+.sec h2{font-size:clamp(32px,4.4vw,52px);margin-bottom:16px}
+.sec .desc{font-size:clamp(15px,1.4vw,18px);color:var(--fg2);max-width:500px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.split>*{min-width:0}
+.split.rev>.copy{order:2}
+.points{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-direction:column;gap:12px}
+.points li{display:flex;gap:10px;font-size:15px;color:var(--fg2);align-items:flex-start}
+.points li svg{flex-shrink:0;margin-top:3px}
+@media (max-width:900px){.sec{padding:56px 0}.split{grid-template-columns:1fr;gap:28px}.split.rev>.copy{order:0}}
+
+.card{border:1px solid var(--border);border-radius:24px;background:var(--bg)}
+
+/* level map */
+.mapcard{overflow:hidden}
+.map-h{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);font-size:13px;color:var(--fg2);gap:8px}
+.map-h b{color:var(--fg)}
+.goalchip{font-size:12px;font-weight:600;color:var(--accent-ink);background:var(--accent-soft);padding:4px 10px;border-radius:100px;white-space:nowrap}
+.map{position:relative;width:100%;max-width:370px;margin:8px auto;aspect-ratio:350/600}
+.map>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.nl svg{flex-shrink:0}
+.p-fut{stroke:var(--border2);stroke-width:3;stroke-dasharray:2 9;stroke-linecap:round;fill:none}
+.p-done{stroke:var(--accent);stroke-width:4;stroke-linecap:round;fill:none}
+.node{position:absolute;left:calc(var(--x) / 350 * 100%);top:calc(var(--y) / 600 * 100%);width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;display:grid;place-items:center;font-weight:600;letter-spacing:-.03em;font-size:20px;transform:scale(.4);opacity:0;transition:transform .5s var(--ease),opacity .4s;transition-delay:var(--dl,0s)}
+.map.on .node{transform:none;opacity:1}
+.node.done{background:var(--accent);color:var(--white);font-family:var(--mono);font-weight:500;font-size:17px;letter-spacing:0}
+.node.cur{width:80px;height:80px;margin:-40px 0 0 -40px;background:var(--accent);color:var(--white);font-size:30px}
+.node.cur::before{content:'';position:absolute;inset:-14px;border-radius:50%;background:var(--accent);opacity:.12;animation:pulse 2.2s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.85);opacity:.22}70%{transform:scale(1.18);opacity:0}100%{opacity:0}}
+.node.next{background:var(--bg);border:2px solid var(--accent);color:var(--accent)}
+.node.tgt{background:var(--bg);border:1.5px dashed var(--border2);color:var(--muted)}
+.node.goal{background:var(--yellow-soft);border:2px solid var(--yellow)}
+.nl{position:absolute;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:13px;letter-spacing:0;font-family:var(--sans)}
+.nl.r{left:calc(100% + 12px)} .nl.l{right:calc(100% + 12px);text-align:right}
+.nl small{display:block;font-size:12px;color:var(--muted);font-weight:400}
+.nl .ok{display:inline-flex;align-items:center;gap:4px;color:var(--fg2);font-weight:500}
+.nl.box{background:var(--fg);color:var(--white);padding:9px 12px;border-radius:12px;font-weight:600;font-size:15px;line-height:1.3}
+.nl.box small{color:#C9C9C2}
+.nl.nx{background:var(--accent-soft);color:var(--accent-ink);padding:9px 12px;border-radius:12px;font-weight:600;line-height:1.35}
+.nl.nx small{color:var(--accent-ink)}
+.map-f{background:var(--yellow-soft);color:var(--yellow-ink);font-size:13px;font-weight:500;padding:13px 16px}
+
+/* daily */
+.daily{padding:18px;display:flex;flex-direction:column;gap:16px}
+.streak{display:flex;justify-content:space-between;align-items:center}
+.streak .l{display:flex;gap:10px;align-items:center}
+.ib{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex-shrink:0}
+.streak b{font-size:17px;letter-spacing:-.02em}
+.streak small{display:block;font-size:12px;color:var(--muted)}
+.week{display:flex;gap:6px}
+.week div{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;font-weight:500;color:var(--muted)}
+.week i{width:100%;max-width:38px;aspect-ratio:1;border-radius:50%;background:var(--surface);display:grid;place-items:center;transition:background .35s var(--ease),transform .35s var(--ease)}
+.week i.f{background:var(--accent)}
+.week i.t{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
+.week div.today{color:var(--accent)}
+.hrl{height:1px;background:var(--border)}
+.task{display:flex;align-items:center;gap:12px;padding:10px;border-radius:14px}
+.task.now{background:var(--surface);border:1px solid var(--border)}
+.task .t{flex:1;min-width:0}
+.task b{display:block;font-size:15px;letter-spacing:-.01em}
+.task.dn b{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--border2)}
+.task small{font-size:12px;color:var(--muted)}
+.okdot{width:24px;height:24px;border-radius:50%;background:var(--green-soft);display:grid;place-items:center}
+.go{font-size:12px;font-weight:600;color:var(--white);background:var(--accent);padding:6px 12px;border-radius:100px}
+.note{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border-radius:14px;padding:14px;font-size:13px;color:var(--fg2);margin-top:14px}
+.note svg{flex-shrink:0;margin-top:1px}
+
+/* chat */
+.chat{padding:16px;display:flex;flex-direction:column;gap:10px;min-height:420px}
+.ctx{font-size:12px;font-weight:500;color:var(--red-ink);background:var(--red-soft);border-radius:10px;padding:8px 10px}
+.msg{max-width:82%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.5;animation:pop .4s var(--ease)}
+.msg.me{align-self:flex-end;background:var(--accent);color:var(--white);border-bottom-right-radius:6px}
+.msg.ai{align-self:flex-start;background:var(--surface);border-bottom-left-radius:6px}
+.msg.ai .h{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--accent-ink);margin-bottom:4px}
+.typing{align-self:flex-start;background:var(--surface);border-radius:16px;padding:14px 16px;display:flex;gap:5px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:dot 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,80%,100%{opacity:.25;transform:none}40%{opacity:1;transform:translateY(-3px)}}
+.sugs{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.sug{font-size:13px;font-weight:500;color:var(--accent);border:1px solid var(--accent);border-radius:100px;padding:7px 12px;transition:background .2s}
+.sug:hover{background:var(--accent-soft)}
+.sug[disabled]{opacity:.35;cursor:default}
+
+/* result */
+.save{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--green-ink);background:var(--green-soft);padding:7px 12px;border-radius:100px;margin-top:22px;transition:background .3s,color .3s}
+.save.ing{background:var(--surface);color:var(--fg2)}
+.rcard{padding:20px;display:flex;flex-direction:column;gap:18px}
+.rh{display:flex;justify-content:space-between;font-size:13px;color:var(--fg2);font-weight:500}
+.rh .up{font-family:var(--mono);color:var(--green-ink)}
+.big{display:flex;align-items:center;gap:16px}
+.big b{font-size:88px;font-weight:600;letter-spacing:-.06em;color:var(--accent);line-height:.85}
+.big strong{font-size:30px;letter-spacing:-.04em;display:block}
+.big small{font-size:12px;color:var(--muted)}
+.scale{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+.scale div{display:flex;flex-direction:column;gap:6px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.scale i{height:5px;border-radius:4px;background:var(--surface2);position:relative;overflow:hidden}
+.scale i::after{content:'';position:absolute;inset:0;background:var(--accent);opacity:.35;transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);transition-delay:var(--dl)}
+.scale div.cur i{height:8px}
+.scale div.cur i::after{opacity:1}
+.scale div.cur{color:var(--accent)}
+.scale div.off i::after{display:none}
+.on .scale i::after{transform:none}
+.topics{display:flex;flex-direction:column;gap:12px}
+.tp .r{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:500;margin-bottom:6px}
+.tp .r span{display:flex;align-items:center;gap:6px}
+.tp .r em{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--fg2)}
+.tp.w .r em{color:var(--yellow-ink)}
+.bar{height:6px;background:var(--surface2);border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;width:var(--v);background:var(--accent);border-radius:6px;transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease);transition-delay:var(--dl,0s)}
+.tp.w .bar i{background:var(--yellow)}
+.on .bar i{transform:none}
+
+/* leaderboard */
+.lb{overflow:hidden}
+.tabs{display:flex;gap:4px;padding:6px;border-bottom:1px solid var(--border)}
+.tabs button{flex:1;padding:8px 0;border-radius:10px;font-size:13px;font-weight:500;color:var(--muted);transition:background .2s,color .2s}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--fg);font-weight:600}
+.row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);animation:pop .4s var(--ease) both;animation-delay:var(--dl,0s)}
+.row .rk{width:30px;height:28px;border-radius:8px;background:var(--surface);display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--fg2);flex-shrink:0}
+.row .n{flex:1;font-size:15px;font-weight:500}
+.row .b{font-family:var(--mono);font-size:14px;font-weight:500}
+.row.g .rk{background:var(--yellow-soft);color:var(--yellow-ink)}
+.row.me{background:var(--accent-soft)}
+.row.me .rk{background:var(--accent);color:var(--white)}
+.row.me .n,.row.me .b{color:var(--accent-ink);font-weight:600}
+.row.gap{justify-content:center;color:var(--muted);font-size:13px;padding:6px}
+.lbf{padding:11px 16px;text-align:center;font-size:12px;font-weight:500;color:var(--fg2);background:var(--surface)}
+.share{display:flex;gap:20px;align-items:center;margin:28px 0 12px;padding-left:4px}
+.story{width:124px;height:212px;border-radius:16px;background:var(--accent);color:var(--white);padding:14px;display:flex;flex-direction:column;justify-content:space-between;transform:rotate(-4deg);flex-shrink:0;transition:transform .4s var(--ease)}
+.share:hover .story{transform:rotate(0)}
+.story .k{font-family:var(--mono);font-size:9px;letter-spacing:.2em}
+.story b{font-size:52px;font-weight:600;letter-spacing:-.06em;line-height:1;display:block}
+.story small{font-size:10px}
+.story .c{font-size:12px;font-weight:600}
+.share .t{display:flex;flex-direction:column;gap:10px;align-items:flex-start;min-width:0}
+.share .t b{font-size:17px;letter-spacing:-.02em}
+.share .t p{font-size:13px;color:var(--fg2)}
+
+/* parents / telegram */
+.tg{background:#E7EEF5;border-radius:24px;overflow:hidden;border:1px solid var(--border)}
+.tg-h{display:flex;align-items:center;gap:10px;background:var(--bg);padding:12px 16px;border-bottom:1px solid var(--border)}
+.tg-h .av{width:36px;height:36px;border-radius:50%;background:var(--accent);display:grid;place-items:center}
+.tg-h b{font-size:15px;display:block;letter-spacing:-.01em}
+.tg-h small{font-size:12px;color:var(--muted)}
+.tg-b{padding:18px 14px 16px;display:flex;flex-direction:column;gap:6px}
+.tg-m{background:var(--bg);border-radius:16px 16px 16px 6px;padding:12px 14px;max-width:92%;font-size:14px;line-height:1.5}
+.tg-m .tt{font-weight:600;margin-bottom:8px}
+.tg-m dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px}
+.tg-m dt{color:var(--muted)} .tg-m dd{margin:0;font-weight:500}
+.tg-m .up{color:var(--green-ink)}
+.tg-m .tm{font-size:11px;color:var(--muted);text-align:right;margin-top:6px}
+.tg-btns{display:grid;grid-template-columns:1fr 1fr;gap:6px;max-width:92%}
+.tg-btns span{background:rgba(255,255,255,.7);border-radius:10px;padding:9px;text-align:center;font-size:13px;font-weight:500;color:var(--accent-ink)}
+
+/* trust */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+.step{padding:22px;display:flex;flex-direction:column;gap:10px}
+.step .n{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.step b{font-size:18px;letter-spacing:-.02em}
+.step p{font-size:14px;color:var(--fg2)}
+.honest{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.honest .card{padding:22px;display:flex;gap:14px;align-items:flex-start}
+.honest b{display:block;font-size:16px;margin-bottom:4px;letter-spacing:-.01em}
+.honest p{font-size:14px;color:var(--fg2)}
+.report{margin-top:12px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px;color:var(--red-ink);border:1px solid var(--red-soft);background:var(--red-soft);padding:7px 12px;border-radius:100px}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr;gap:10px;margin-top:28px}.step{padding:16px}.honest{grid-template-columns:1fr}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* pricing */
+.ptop{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.toggle{display:inline-flex;background:var(--surface2);border-radius:12px;padding:4px}
+.toggle button{padding:12px 14px;min-height:44px;border-radius:9px;font-size:14px;font-weight:500;color:var(--fg2);display:flex;gap:6px;align-items:center}
+.toggle button[aria-pressed="true"]{background:var(--bg);color:var(--fg);font-weight:600}
+.toggle small{font-size:11px;font-weight:600;color:var(--green-ink);background:var(--green-soft);padding:2px 6px;border-radius:6px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.plan{padding:28px;display:flex;flex-direction:column;gap:22px}
+.plan.pop{border:2px solid var(--accent)}
+.plan .h{display:flex;justify-content:space-between;align-items:center;font-size:18px;font-weight:600}
+.plan .h span{font-size:12px;color:var(--white);background:var(--accent);padding:4px 10px;border-radius:100px}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price b{font-size:44px;font-weight:600;letter-spacing:-.05em;line-height:1}
+.price span{font-size:15px;color:var(--muted)}
+.plan .pn{font-size:13px;color:var(--fg2);margin-top:-14px;min-height:20px}
+.plan ul{list-style:none;padding:18px 0 0;margin:0;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:11px;flex:1}
+.plan li{display:flex;gap:10px;font-size:15px;align-items:flex-start}
+.plan li svg{flex-shrink:0;margin-top:3px}
+.plan li.off{color:var(--muted)}
+.launch{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:32px;padding:16px 18px;border-radius:16px;background:var(--yellow-soft);color:var(--fg)}
+.launch p{flex:1;min-width:220px;font-size:15px}
+.lb-tag{font-size:12px;font-weight:600;color:var(--yellow-ink);background:var(--bg);padding:4px 10px;border-radius:100px}
+.lb-left{font-size:13px;color:var(--yellow-ink)}
+.launch+.plans{margin-top:16px}
+.gift{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:24px}
+.gift .btn,.plan .btn,.cta .btn,#st-par .btn{white-space:normal;text-align:center}
+.gift span{font-size:13px;color:var(--muted)}
+.paynote{font-size:13px;color:var(--muted);margin-top:18px}
+@media (max-width:900px){.plans{grid-template-columns:1fr}}
+
+/* olympiad */
+.ol{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;padding:44px}
+.ol h2{font-size:clamp(30px,3.6vw,44px)}
+.cd{background:var(--surface);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:16px}
+.cd .h{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.cd-g{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cd-g div{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 4px;text-align:center}
+.cd-g b{display:block;font-family:var(--mono);font-weight:500;font-size:clamp(26px,3vw,36px);letter-spacing:-.04em;line-height:1.1;font-variant-numeric:tabular-nums}
+.cd-g small{font-size:12px;color:var(--muted)}
+.cd .m{display:flex;justify-content:space-between;font-size:14px;color:var(--fg2);gap:8px;flex-wrap:wrap}
+.cd .m b{color:var(--green-ink)}
+@media (max-width:900px){.ol{grid-template-columns:1fr;padding:22px;gap:24px}}
+
+/* faq */
+.faq{display:grid;grid-template-columns:380px 1fr;gap:72px}
+.qa{border-top:1px solid var(--border)}
+.qa:last-child{border-bottom:1px solid var(--border)}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;padding:22px 0;font-size:18px;font-weight:500;letter-spacing:-.015em}
+.qa .pm{width:30px;height:30px;border-radius:50%;background:var(--surface);display:grid;place-items:center;flex-shrink:0;transition:background .25s,transform .3s var(--ease)}
+.qa .pm svg{transition:transform .3s var(--ease)}
+.qa.open .pm{background:var(--accent)}
+.qa.open .pm svg{transform:rotate(45deg)}
+.qa.open .pm path{stroke:var(--white)}
+.qa .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease)}
+.qa.open .a{grid-template-rows:1fr}
+.qa .a>div{overflow:hidden}
+.qa .a p{padding:0 0 22px;color:var(--fg2);font-size:15px;max-width:640px}
+@media (max-width:900px){.faq{grid-template-columns:1fr;gap:20px}.qa button{font-size:16px;padding:18px 0}}
+
+/* cta */
+.cta{background:var(--accent);border-radius:28px;color:var(--white);text-align:center;padding:clamp(48px,7vw,88px) 24px;display:flex;flex-direction:column;align-items:center;gap:22px}
+.cta h2{font-size:clamp(36px,5.4vw,64px);margin:0}
+.cta h2 em.s{color:var(--white)}
+.cta p{font-size:17px;opacity:.9;max-width:520px}
+.cta .b{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn-o{border:1px solid rgba(255,255,255,.4);color:var(--white)}
+.btn-o:hover{border-color:var(--white)}
+
+/* footer */
+footer{border-top:1px solid var(--border);padding:56px 0 calc(32px + env(safe-area-inset-bottom,0px))}
+.ft{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.ft p{font-size:14px;color:var(--fg2);max-width:300px;margin-top:14px}
+.fcols{display:flex;gap:64px;flex-wrap:wrap}
+.fcols div{display:flex;flex-direction:column;gap:0;font-size:15px;color:var(--fg2)}
+.fcols a,.fcols span{padding:11px 0;min-height:44px;box-sizing:border-box}
+.fcols h4{margin:0 0 4px;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.disc{font-size:12px;color:var(--muted);margin-top:32px;max-width:640px}
+.fb2{display:flex;justify-content:space-between;border-top:1px solid var(--border);margin-top:40px;padding-top:20px;font-size:13px;color:var(--muted);gap:12px;flex-wrap:wrap}
+@media (max-width:900px){.fcols{gap:36px}}
+
+/* sticky mobile cta */
+.stk{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--border);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));transform:translateY(110%);transition:transform .35s var(--ease);display:none}
+.stk.show{transform:none}
+@media (max-width:900px){.stk{display:block}}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--fg);color:var(--white);font-size:14px;font-weight:500;padding:11px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:opacity .25s,transform .35s var(--ease);z-index:70;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* scroll story */
+.lvstory{padding-bottom:0}
+.story-head{margin-bottom:8px}
+.m-head{display:none}
+.d-head{margin-bottom:28px}
+.story-track{position:relative;height:calc(100svh + 5 * 60svh)}
+.story-sticky{position:sticky;top:calc(64px + env(safe-area-inset-top,0px));height:calc(100svh - 64px - env(safe-area-inset-top,0px));display:flex;align-items:center;overflow:hidden}
+.story-g{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;width:100%}
+.story-g>*{min-width:0}
+.vals{border:1px solid var(--border);border-radius:22px;background:var(--bg);overflow:hidden;padding:16px 0 18px}
+.vals-h{display:flex;justify-content:space-between;align-items:center;padding:0 18px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg2)}
+.vals-bar{height:3px;background:var(--surface2);margin:12px 18px 16px;border-radius:3px;overflow:hidden}
+.vals-bar i{display:block;height:100%;width:100%;background:var(--accent);transform-origin:left;transform:scaleX(0)}
+.vals-t{display:flex;gap:12px;padding:0 18px;will-change:transform}
+.vc{flex:0 0 min(300px,78%);border-radius:18px;padding:18px;background:var(--surface);border:1.5px solid transparent;display:flex;gap:14px;align-items:flex-start;transition:background .25s,border-color .25s}
+.vc.on{background:var(--accent-soft);border-color:var(--accent)}
+.vc .vi{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex-shrink:0}
+.vc q{display:block;font-family:var(--serif);font-style:italic;font-size:16px;color:var(--muted);line-height:1.25;margin-bottom:6px;quotes:"“" "”"}
+.vc.on q{color:var(--accent-ink)}
+.vc b{display:block;font-size:17px;letter-spacing:-.02em;margin-bottom:4px}
+.vc p{font-size:14px;color:var(--fg2);line-height:1.45;margin-bottom:10px}
+.vr{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--accent-ink);background:var(--bg);padding:4px 9px;border-radius:8px}
+.lv{overflow:hidden}
+.lv-h{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--border);gap:12px}
+.lv-g{display:flex;align-items:center;gap:12px}
+.lv-g b{font-size:44px;font-weight:600;letter-spacing:-.05em;color:var(--accent);line-height:1;min-width:58px}
+.lv-g strong{display:block;font-size:20px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.lv-g small{font-size:12px;color:var(--muted)}
+.goalchip.ok{background:var(--green-soft);color:var(--green-ink)}
+.lvmap{position:relative;height:min(460px,calc(100svh - 64px - 330px));aspect-ratio:350/480;max-width:100%;margin:10px auto 0}
+.lvmap svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.lv-fut{fill:none;stroke:var(--border2);stroke-width:3;stroke-dasharray:2 9;stroke-linecap:round}
+.lv-prog{fill:none;stroke:var(--accent);stroke-width:4;stroke-linecap:round}
+.lvn{position:absolute;left:calc(var(--x) / 350 * 100%);top:calc(var(--y) / 480 * 100%);width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:15px;letter-spacing:-.02em;background:var(--bg);border:1.5px dashed var(--border2);color:var(--muted);transition:background .3s var(--ease),color .3s,border-color .3s,transform .4s var(--ease)}
+.lvn.goal{border:2px solid var(--accent);color:var(--accent)}
+.lvn.top{background:var(--yellow-soft);border:2px solid var(--yellow);color:var(--yellow-ink)}
+.lvn.on{background:var(--accent);border:2px solid var(--accent);color:var(--white);transform:scale(1.1)}
+.lvn .th{position:absolute;top:50%;transform:translateY(-50%);white-space:nowrap;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--muted)}
+.lvn .th.r{left:calc(100% + 8px)} .lvn .th.l{right:calc(100% + 8px)}
+.lvn .th.tg{color:var(--accent)}
+.lvc{position:absolute;left:0;top:0;background:var(--fg);color:var(--white);font-size:12px;font-weight:600;padding:5px 9px;border-radius:9px;white-space:nowrap;pointer-events:none;will-change:transform;z-index:2}
+.lv-f{text-align:center;font-size:11px;color:var(--muted);font-family:var(--mono);padding:8px 0 14px}
+@media (max-width:900px){
+  .story-track{height:calc(100svh + 5 * 55svh)}
+  .m-head{display:block}
+  .d-head{display:none}
+  .story-g{grid-template-columns:1fr;gap:10px}
+  .vals{padding:12px 0 14px}
+  .vc{padding:14px;flex-basis:88%;gap:12px}
+  .vc .vi{width:34px;height:34px;border-radius:10px}
+  .vc q{font-size:15px;margin-bottom:4px}
+  .vc b{font-size:16px;margin-bottom:2px}
+  .vc p{font-size:13px;margin-bottom:8px;line-height:1.4}
+  .vals-bar{margin:10px 18px 12px}
+  .lv-h{padding:10px 14px}
+  .lv-g b{font-size:36px}
+  .lvmap{height:min(380px,calc(100svh - 64px - 400px))}
+  .lv-f{padding:4px 0 10px}
+}
+
+/* role gate (popup) */
+.gate{position:fixed;inset:0;z-index:80;background:rgba(246,246,243,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;overflow-y:auto;overscroll-behavior:contain;padding:calc(env(safe-area-inset-top,0px) + 16px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 16px) max(16px,env(safe-area-inset-left,0px));animation:fadeIn .3s var(--ease)}
+.gate.out{opacity:0;transition:opacity .3s var(--ease)}
+.gate-c{width:100%;max-width:520px;margin:auto;background:var(--bg);border:1px solid var(--border);border-radius:28px;padding:32px 28px 24px;display:flex;flex-direction:column;gap:14px;animation:rise .5s var(--ease)}
+.gate.out .gate-c{transform:translateY(12px) scale(.98);transition:transform .3s var(--ease)}
+.gate h2{font-size:clamp(30px,6vw,40px);margin-top:12px}
+.gate-s{font-size:16px;color:var(--fg2);margin-bottom:6px}
+.gate-o{display:flex;flex-direction:column;gap:10px}
+.opt-r{display:flex;align-items:center;gap:16px;text-align:left;padding:18px;border:1px solid var(--border);border-radius:20px;transition:border-color .2s,background .2s,transform .15s var(--ease)}
+.opt-r:hover{border-color:var(--accent);background:var(--surface)}
+.opt-r:active{transform:scale(.99)}
+.opt-r .gi{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;flex-shrink:0}
+.opt-r .gt{flex:1;min-width:0}
+.opt-r b{display:block;font-size:19px;font-weight:600;letter-spacing:-.02em;margin-bottom:2px}
+.opt-r small{font-size:14px;color:var(--fg2);line-height:1.45;display:block}
+.opt-r .ga{color:var(--muted);flex-shrink:0;transition:transform .25s var(--ease),color .2s}
+.opt-r:hover .ga{transform:translateX(3px);color:var(--accent)}
+.gate-f{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+.gstep{display:flex;flex-direction:column;gap:14px;animation:pop .35s var(--ease)}
+.gtop{display:flex;justify-content:space-between;align-items:center}
+.gback{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--fg2);padding:6px 0}
+.gstepn{font-size:12px;color:var(--muted)}
+#gStep2 h2{margin-top:2px}
+#gMains{margin-bottom:0}
+.gsum{font-size:14px;color:var(--fg2);min-height:22px}
+.gsum b{color:var(--accent-ink)}
+@keyframes fadeIn{from{opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(24px) scale(.97)}}
+.rolepill{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:12px 12px;min-height:44px;border-radius:100px;background:var(--surface);border:1px solid var(--border);color:var(--fg2);transition:border-color .2s}
+.rolepill:hover{border-color:var(--border2);color:var(--fg)}
+@media (max-width:420px){.nav-login{display:none}}
+
+/* chosen summary in hero card */
+.psum{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.psum-l{font-size:13px;color:var(--muted);margin-right:2px}
+.psum-c{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:600;padding:7px 12px;border-radius:100px;background:var(--accent-soft);color:var(--accent-ink)}
+.psum-c i{font-style:normal;width:18px;height:18px;border-radius:50%;background:var(--accent);color:var(--white);display:grid;place-items:center;font-family:var(--mono);font-size:11px}
+.psum-e{margin-left:auto;font-size:14px;font-weight:600;color:var(--accent);padding:12px 4px;min-height:44px}
+/* teacher goals */
+.goals{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.tg-goal{text-align:left;padding:12px 14px;border:1.5px solid var(--border);border-radius:14px;display:flex;flex-direction:column;gap:2px;transition:border-color .2s,background .2s}
+.tg-goal b{font-size:15px;letter-spacing:-.01em}
+.tg-goal small{font-size:12px;color:var(--muted)}
+.tg-goal[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.tg-goal[aria-pressed="true"] small{color:var(--accent-ink)}
+.att{background:var(--surface);border-radius:16px;padding:14px 16px;margin-bottom:12px;display:flex;flex-direction:column;gap:8px}
+.att-h{font-size:13px;font-weight:600;color:var(--fg2)}
+.att-r{display:flex;align-items:baseline;gap:12px}
+.att-r b{font-family:var(--mono);font-size:18px;font-weight:500;color:var(--accent);min-width:40px}
+.att-r span{font-size:14px}
+.att p{font-size:12px;color:var(--muted)}
+body[data-tgoal="att"] .tg-ms-only{display:none!important}
+body[data-tgoal="ms"] .tg-att-only{display:none!important}
+body[data-tgoal="both"] .hc.tg-att-only{display:none!important}
+
+
+/* natija — honest answers */
+.nt-head{max-width:640px}
+.nt-top{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:20px;margin-top:40px;align-items:stretch}
+.nt-bottom{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;margin-top:20px}
+@media (max-width:900px){.nt-top,.nt-bottom{grid-template-columns:1fr;margin-top:24px}}
+.nt-chart{margin:0;border:1px solid var(--border);border-radius:24px;padding:24px;background:var(--bg);display:flex;flex-direction:column;gap:16px}
+.natija h3,#natija h3{font-size:20px;letter-spacing:-.02em;line-height:1.25;margin-bottom:6px}
+#natija p{font-size:15px;color:var(--fg2);line-height:1.55}
+.pc{position:relative}
+.pc svg{display:block;width:100%;height:auto;overflow:visible}
+.pc-grid{stroke:var(--border2);stroke-dasharray:2 4}
+.pc-base{stroke:var(--border2)}
+.pc-goal{stroke:var(--green);stroke-width:1.5}
+.pc-goal-t{fill:var(--green-ink);font-size:12px;font-weight:600}
+.pc-ax{fill:var(--muted);font-size:12px}
+.pc-line{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.pc-proj{stroke:var(--accent);stroke-width:2;stroke-dasharray:5 6;opacity:.7}
+.pc-dot{fill:var(--bg);stroke:var(--accent);stroke-width:2.5}
+.pc-hit{fill:var(--green);stroke:var(--bg);stroke-width:3}
+.pc-badge{position:absolute;left:10%;top:2%;background:var(--green-soft);color:var(--green-ink);font-size:13px;padding:7px 12px;border-radius:100px;line-height:1.3}
+.pc-badge b{font-weight:600}
+#natija .pc-note{font-size:12px;color:var(--muted)}
+.nt-deal{border-radius:24px;padding:24px;background:var(--surface);display:flex;flex-direction:column;gap:16px}
+.nt-side h4{font-size:15px;font-weight:600;color:var(--accent-ink);margin-bottom:8px}
+.nt-side.you h4{color:var(--fg)}
+.nt-side ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.nt-side li{position:relative;padding-left:20px;font-size:15px;line-height:1.45}
+.nt-side li::before{content:"";position:absolute;left:2px;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.nt-side.you{border-top:1px solid var(--border2);padding-top:16px}
+.nt-side.you li::before{background:var(--fg)}
+.nt-fit dl{margin:12px 0 0;display:flex;flex-direction:column;gap:12px}
+.nt-fit dl div{border-left:3px solid;padding:4px 0 4px 14px}
+.nt-fit .ok{border-color:var(--green)}
+.nt-fit .wait{border-color:var(--yellow)}
+.nt-fit dt{font-size:15px;font-weight:600;margin-bottom:2px}
+.nt-fit .ok dt{color:var(--green-ink)}
+.nt-fit .wait dt{color:var(--yellow-ink)}
+.nt-fit dd{margin:0;font-size:15px;color:var(--fg2);line-height:1.5}
+.nt-trust{border-radius:24px;padding:24px;background:var(--accent-soft);display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.nt-trust h3{color:var(--accent-ink)}
+#natija .nt-trust p{color:var(--fg)}
+.nt-trust .btn{margin-top:4px}
+@media (max-width:520px){.nt-chart,.nt-deal,.nt-trust{padding:20px}.pc-badge{position:static;display:inline-block;margin-top:8px}.pc-ax,.pc-goal-t{font-size:21px}.pc-line{stroke-width:4}.pc-dot{r:7;stroke-width:3.5}.pc-hit{r:10}}
+/* role switch */
+body[data-role="t"] .s-only,body[data-role="p"] .s-only{display:none!important}
+body:not([data-role="t"]) .t-only{display:none!important}
+body:not([data-role="p"]) .p-only{display:none!important}
+body[data-role="t"] .sp-only,body[data-role="p"] .np{display:none!important}
+/* parent connect card */
+.pl-st{list-style:none;display:flex;flex-direction:column;gap:2px;margin:0 0 16px;padding:0}
+.pl-st li{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border)}
+.pl-st li:last-child{border-bottom:0}
+.pl-st li>b{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:600}
+.pl-st strong{display:block;font-size:15px;font-weight:600;letter-spacing:-.01em;line-height:1.35}
+.pl-st small{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+#st-par .btn+.btn{margin-top:8px}
+.role{display:inline-flex;align-self:flex-start;background:var(--surface2);border-radius:14px;padding:4px;gap:2px}
+.role button{padding:10px 18px;border-radius:11px;font-size:15px;font-weight:500;color:var(--fg2);border:1px solid transparent;transition:background .2s,color .2s}
+.role button[aria-selected="true"]{background:var(--bg);color:var(--fg);font-weight:600;border-color:var(--border)}
+.hc{display:flex;flex-direction:column;gap:22px}
+.src{font-size:11px;color:var(--muted);font-family:var(--mono)}
+
+/* hero main-subject picker (student) */
+.h3s{font-size:12px;font-weight:500;color:var(--muted);font-family:var(--mono);margin-left:6px;letter-spacing:0}
+.chip .no{display:none;width:18px;height:18px;border-radius:50%;background:var(--white);color:var(--accent);font-family:var(--mono);font-size:11px;font-weight:600;place-items:center}
+.chip[aria-pressed="true"] .no{display:grid}
+.chip.nums[aria-pressed="true"] .ck{display:none}
+.need-box{background:var(--accent-soft);border-radius:16px;padding:14px 16px;margin-bottom:14px;display:flex;flex-direction:column;gap:6px;animation:pop .35s var(--ease)}
+.need-box .t{display:flex;align-items:baseline;gap:8px;color:var(--accent-ink)}
+.need-box .t b{font-size:28px;font-weight:600;letter-spacing:-.04em;line-height:1}
+.need-box .t span{font-size:15px;font-weight:600}
+.need-box .m{font-size:13px;color:var(--fg2)}
+.need-box .m b{color:var(--fg);font-weight:600}
+.need-box .ok{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--green-ink)}
+
+/* hero portfolio (student) */
+.pf{display:flex;flex-direction:column;gap:6px;margin:4px 0 14px}
+.pf-r{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:12px;animation:pop .4s var(--ease) both;animation-delay:var(--dl,0s)}
+.pf-r .nm{flex:1;min-width:0}
+.pf-r b{display:block;font-size:15px;font-weight:600;letter-spacing:-.01em}
+.pf-r small{font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:.02em}
+.need{font-family:var(--mono);font-size:12px;font-weight:500;padding:4px 8px;border-radius:8px;background:var(--accent-soft);color:var(--accent-ink);white-space:nowrap}
+.need.hi{background:var(--yellow-soft);color:var(--yellow-ink)}
+.pf-sum{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--fg2);margin-bottom:12px;gap:8px;flex-wrap:wrap}
+.pf-sum b{color:var(--fg)}
+
+/* teacher calc */
+.fld{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.fld label{font-size:13px;font-weight:600;color:var(--fg2)}
+.inp{width:100%;padding:13px 14px;border:1px solid #8A8A82;border-radius:12px;font-family:var(--mono);font-size:18px;font-weight:500;color:var(--fg);background:var(--bg);transition:border-color .2s}
+.inp:focus{outline:none;border-color:var(--accent)}
+.calc{background:var(--green-soft);border-radius:16px;padding:16px;margin-bottom:12px;display:flex;flex-direction:column;gap:4px}
+.calc .k{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--green-ink);font-weight:600;gap:8px}
+.calc .pct{font-family:var(--mono);background:var(--bg);padding:3px 8px;border-radius:8px}
+.calc .v{font-size:32px;font-weight:600;letter-spacing:-.04em;color:var(--green-ink);line-height:1.15}
+.calc .v small{font-size:15px;font-weight:500;letter-spacing:0}
+.calc .y{font-size:14px;color:var(--fg2)}
+.calc .y b{color:var(--fg)}
+.calc .cond{font-size:12px;color:var(--green-ink);margin-top:4px}
+.pend{font-size:12px;color:var(--yellow-ink);background:var(--yellow-soft);border-radius:10px;padding:8px 10px;margin-bottom:12px}
+
+/* portfolio section */
+.pfc{overflow:hidden}
+.pfc-h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.pfc-h b{font-size:16px;letter-spacing:-.01em}
+.pfc-h small{display:block;font-size:12px;color:var(--muted)}
+.prog{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;font-weight:500}
+.prog .tr{width:96px;height:6px;border-radius:6px;background:var(--surface2);overflow:hidden}
+.prog .tr i{display:block;height:100%;width:50%;background:var(--green);border-radius:6px;transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease) .3s}
+.on .prog .tr i{transform:none}
+.pr{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--border)}
+.pr:last-of-type{border-bottom:0}
+.pr .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center}
+.pr b{font-size:15px;letter-spacing:-.01em;display:block}
+.pr small{font-size:12px;color:var(--muted)}
+.pr .stt{font-size:12px;font-weight:600;padding:5px 10px;border-radius:100px;white-space:nowrap}
+.pr .mini{grid-column:2 / 4;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--fg2);margin-top:-4px}
+.pr .mini .bar{flex:1;display:block}
+.pfc-f{background:var(--accent-soft);color:var(--accent-ink);padding:14px 18px;font-size:13px;line-height:1.5}
+.pfc-f b{font-weight:600}
+.pfc-f.q{background:var(--surface);color:var(--fg2)}
+.pr .stt.open{background:var(--accent-soft);color:var(--accent-ink)}
+.pr .stt.soon{background:var(--yellow-soft);color:var(--yellow-ink)}
+.pr .stt.closed{background:var(--surface);color:var(--fg2)}
+.pfc-e{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:22px 18px}
+.pfc-e p{font-size:14px;color:var(--fg2)}
+@media (max-width:520px){.pr{grid-template-columns:34px 1fr;align-items:start;row-gap:8px;padding:14px 16px}.pr .stt{grid-column:2;justify-self:start}.pr .ic{margin-top:2px}}
+
+/* teacher rules */
+.rules{overflow:hidden}
+.rule{display:grid;grid-template-columns:1fr auto;gap:6px 16px;padding:16px 18px;border-bottom:1px solid var(--border);align-items:center}
+.rule:last-of-type{border-bottom:0}
+.rule b{font-size:15px;letter-spacing:-.01em}
+.rule small{grid-column:1 / 2;font-size:12px;color:var(--muted)}
+.rule .p{grid-row:1 / 3;grid-column:2;font-size:30px;font-weight:600;letter-spacing:-.04em;color:var(--accent)}
+.rule.pd .p{color:var(--yellow-ink);font-size:26px}
+.rule .badge{font-size:11px;font-weight:600;color:var(--yellow-ink);background:var(--yellow-soft);padding:2px 7px;border-radius:6px;margin-left:6px;vertical-align:2px}
+.rules-f{padding:14px 18px;background:var(--surface);font-size:13px;color:var(--fg2)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+
+<script>document.documentElement.classList.add('js');document.documentElement.lang='uz'</script>
+
+<!-- ICON SPRITE -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 20 20"><path d="M4 10h12M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-dash" viewBox="0 0 16 16"><path d="M4.5 8h7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 20 20"><path d="M7.5 15h5M8 17.5h4M10 2.5a5.5 5.5 0 0 0-3.2 10c.5.4.7.9.7 1.5h5c0-.6.2-1.1.7-1.5A5.5 5.5 0 0 0 10 2.5z" fill="#FFC93C" stroke="#FFC93C" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+  <symbol id="i-logo" viewBox="0 0 20 20"><rect x="2.5" y="12" width="4" height="5.5" rx="1" fill="#fff"/><rect x="8" y="8" width="4" height="9.5" rx="1" fill="#fff"/><rect x="13.5" y="3" width="4" height="14.5" rx="1" fill="#fff"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 16 16"><rect x="3.5" y="7" width="9" height="6.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 7V5.2a2.5 2.5 0 0 1 5 0V7" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 20 20"><path d="M6 3.5h8v4a4 4 0 0 1-8 0v-4zM6 5H3.5v1a2.5 2.5 0 0 0 2.6 2.5M14 5h2.5v1a2.5 2.5 0 0 1-2.6 2.5M10 11.5v3M7 16.5h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 16 16"><rect x="2.5" y="3.5" width="11" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2.5 6.5h11M5.5 2v3M10.5 2v3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 20 20"><path d="M10 2.5c.6 2.6 4.5 4.6 4.5 8.6a4.5 4.5 0 0 1-9 0c0-1.9 1-3.2 2-4 .1 1.3.7 2.3 1.6 2.6C9 7.7 8.9 4.9 10 2.5z" fill="#FF9F1C"/></symbol>
+  <symbol id="i-book" viewBox="0 0 20 20"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H15v12H5.5A1.5 1.5 0 0 0 4 16.5v-12zM4 16.5A1.5 1.5 0 0 0 5.5 18H15v-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 20 20"><path d="M10 2.8l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L2.8 8.1l5-.7L10 2.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 16 16"><path d="M8 1.5l1.6 4.4L14 7.5l-4.4 1.6L8 13.5l-1.6-4.4L2 7.5l4.4-1.6L8 1.5z" fill="currentColor"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 16 16"><path d="M4.5 12.5a3 3 0 0 1-.3-6 4 4 0 0 1 7.7 1A2.5 2.5 0 0 1 11.5 12.5h-7z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M6 9.5l1.5 1.5L10 8.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-share" viewBox="0 0 18 18"><path d="M9 11.5V2.5M5.5 6L9 2.5 12.5 6M3.5 10v4.5h11V10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 20 20"><path d="M10 4.5v11M4.5 10h11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 16 16"><path d="M3.5 14V2.5M3.5 3h8l-1.5 3 1.5 3h-8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 16 16"><path d="M3 5.5h9.5M10 3l2.5 2.5L10 8M13 10.5H3.5M6 8l-2.5 2.5L6 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-family" viewBox="0 0 28 28"><circle cx="10" cy="8.5" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="19.5" cy="11.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 23c0-3.9 2.9-7 6.5-7s6.5 3.1 6.5 7M16 23c.3-2.9 1.8-4.8 3.5-4.8s3.3 1.9 3.6 4.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol><symbol id="i-cap" viewBox="0 0 28 28"><path d="M2.5 10.5L14 5l11.5 5.5L14 16 2.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7.5 13v5.5c0 1.8 3 3.5 6.5 3.5s6.5-1.7 6.5-3.5V13M25.5 10.5V17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-board" viewBox="0 0 28 28"><rect x="3.5" y="4.5" width="21" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10h7M8 13.5h4.5M14 18.5V23M9.5 23h9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M18.5 9.5l1.6 1.6 2.7-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-target" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="1.2" fill="currentColor"/></symbol>
+  <symbol id="i-play" viewBox="0 0 20 20"><rect x="2.5" y="4" width="15" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 7.5v5l4-2.5-4-2.5z" fill="currentColor"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 20 20"><rect x="2.5" y="3.5" width="15" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 17h6M10 13.5V17M6 7h4M6 10h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 20 20"><path d="M10 3v14M4 6h12M6 6l-2.5 6a2.5 2.5 0 0 0 5 0L6 6zM14 6l-2.5 6a2.5 2.5 0 0 0 5 0L14 6zM7 17h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="logo" aria-label="Mentalis — bosh sahifa"><i><svg width="18" height="18"><use href="#i-logo"/></svg></i>Mentalis</a>
+    <nav class="links" aria-label="Asosiy">
+      <a href="#ota-ona" class="p-only">Haftalik hisobot</a>
+      <a href="#portfel" class="s-only">Sertifikatlarim</a>
+      <a href="#oqituvchi" class="t-only">Ustama</a>
+      <a href="#xarita">Qanday ishlaydi</a>
+      <a href="#narx">Narxlar</a>
+    </nav>
+    <div class="nav-act">
+      <button class="rolepill" id="rolePill" aria-label="Rolni o‘zgartirish"><span id="rolePillT">O‘quvchi</span><svg width="14" height="14"><use href="#i-swap"/></svg></button>
+      <a href="#demo" class="nav-login">Kirish</a>
+      <a href="#demo" class="btn btn-p btn-sm">Bepul boshlash</a>
+      <button class="burger" id="burger" aria-label="Menyuni ochish" aria-expanded="false"><svg width="24" height="24"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateT" hidden>
+  <div class="gate-c" tabindex="-1" style="outline:none">
+   <div class="gstep" id="gStep1">
+    <span class="logo"><i><svg width="18" height="18"><use href="#i-logo"/></svg></i>Mentalis</span>
+    <h2 id="gateT">Xush kelibsiz! <em class="s">Siz kimsiz?</em></h2>
+    <p class="gate-s">Sahifani aynan siz uchun moslab ochamiz.</p>
+    <div class="gate-o">
+      <button class="opt-r" data-pick="s">
+        <span class="gi" style="background:var(--accent-soft);color:var(--accent)"><svg width="28" height="28"><use href="#i-cap"/></svg></span>
+        <span class="gt"><b>O‘quvchiman</b><small>Sertifikatlarni yig‘ib, kirish imtihonisiz o‘qishga kirmoqchiman</small></span>
+        <svg class="ga" width="20" height="20"><use href="#i-arrow"/></svg>
+      </button>
+      <button class="opt-r" data-pick="t">
+        <span class="gi" style="background:var(--green-soft);color:var(--green-ink)"><svg width="28" height="28"><use href="#i-board"/></svg></span>
+        <span class="gt"><b>O‘qituvchiman</b><small>B+ olib, maoshimga ustama qo‘shmoqchiman</small></span>
+        <svg class="ga" width="20" height="20"><use href="#i-arrow"/></svg>
+      </button>
+      <button class="opt-r" data-pick="p">
+        <span class="gi" style="background:var(--yellow-soft);color:var(--yellow-ink)"><svg width="28" height="28"><use href="#i-family"/></svg></span>
+        <span class="gt"><b>Ota-onaman</b><small>Farzandim qanday tayyorlanayotganini bilib turmoqchiman</small></span>
+        <svg class="ga" width="20" height="20"><use href="#i-arrow"/></svg>
+      </button>
+    </div>
+    <p class="gate-f">Keyin istalgan payt tepadagi tugmadan o‘zgartirasiz.</p>
+   </div>
+   <div class="gstep" id="gStep2t" hidden>
+    <div class="gtop"><button class="gback" data-back="1"><svg width="16" height="16" style="transform:scaleX(-1)"><use href="#i-arrow"/></svg>Orqaga</button><span class="mono gstepn">2 / 2</span></div>
+    <h2>Qaysi fanni <em class="s">o‘qitasiz?</em></h2>
+    <div class="chips" id="gTS" role="group" aria-label="Fan"></div>
+    <p class="gate-s" style="margin-top:4px">Nimaga tayyorlanyapsiz? <span class="h3s">ikkalasi ham mumkin</span></p>
+    <div class="goals" id="gGoals">
+      <button class="tg-goal" data-g="ms"><b>Milliy sertifikat</b><small>B+ va maoshga ustama</small></button>
+      <button class="tg-goal" data-g="att"><b>Attestatsiya</b><small>Malaka toifasi</small></button>
+    </div>
+    <button class="btn btn-p btn-block" id="gGoT">Davom etish <svg width="18" height="18"><use href="#i-arrow"/></svg></button>
+   </div>
+   <div class="gstep" id="gStep2" hidden>
+    <div class="gtop"><button class="gback" id="gBack" data-back="1"><svg width="16" height="16" style="transform:scaleX(-1)"><use href="#i-arrow"/></svg>Orqaga</button><span class="mono gstepn">2 / 2</span></div>
+    <h2>Asosiy <em class="s">fanlaringiz?</em></h2>
+    <p class="gate-s">2 tagacha tanlang — demo savollar shu fanlardan chiqadi.</p>
+    <div class="chips" id="gMains" role="group" aria-label="Asosiy fanlar"></div>
+    <p class="gsum" id="gSum"></p>
+    <button class="btn btn-p btn-block" id="gGo">Davom etish <svg width="18" height="18"><use href="#i-arrow"/></svg></button>
+   </div>
+  </div>
+</div>
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-top"><span class="logo"><i><svg width="18" height="18"><use href="#i-logo"/></svg></i>Mentalis</span><button class="burger" style="display:grid" id="close" aria-label="Yopish"><svg width="20" height="20"><use href="#i-x"/></svg></button></div>
+  <a class="l p-only" href="#ota-ona">Haftalik hisobot</a>
+  <a class="l s-only" href="#portfel">Sertifikatlarim</a>
+  <a class="l t-only" href="#oqituvchi">Ustama qoidalari</a>
+  <a class="l" href="#xarita">Daraja xaritasi</a>
+  <a class="l" href="#narx">Narxlar</a>
+  <a class="btn btn-p btn-block np" href="#demo" style="margin-top:auto">Diagnostikani boshlash</a>
+  <a class="btn btn-p btn-block p-only" href="#demo" style="margin-top:auto">Farzandimni ulash</a>
+</div>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-g">
+    <div class="hero-copy">
+      <!-- student copy -->
+      <div class="hc s-only">
+        <span class="pill rv"><b>2026</b>12 997 abituriyent imtihonsiz talaba bo‘ldi</span>
+        <h1 class="rv" style="--d:.06s">Sertifikatdan yuqori natija oling — o‘qishga <em class="s">imtihonsiz</em> kiring.</h1>
+        <p class="lead rv" style="--d:.12s">Har fandan qaysi daraja yetishini bilib oling — A shart emas, ba’zi yo‘nalishlarda B+ ham yetadi.</p>
+        <div class="facts rv" style="--d:.18s">
+          <div><b>12 997</b><span>testsiz kirdi, 2026</span></div>
+          <div><b>19×</b><span>bir yilda o‘sish</span></div>
+          <div><b>193 186</b><span>sertifikatli abituriyent</span></div>
+        </div>
+        <p class="src rv hero-src" style="--d:.2s;margin-top:-8px">Manba: infoedu.uz, anhor.uz · 2026-yil qabuli</p>
+      </div>
+      <!-- parent copy -->
+      <div class="hc p-only">
+        <span class="pill rv"><b>Telegram</b>Har yakshanba — qisqa hisobot</span>
+        <h1 class="rv" style="--d:.06s">Farzandingiz natijasini <em class="s">har hafta</em> biling.</h1>
+        <p class="lead rv" style="--d:.12s">Necha kun mashq qildi, darajasi qanday o‘zgardi, qaysi mavzuga e’tibor kerak — hammasi bitta qisqa xabarda.</p>
+        <div class="facts rv" style="--d:.18s">
+          <div><b>12 997</b><span>imtihonsiz kirdi, 2026</span></div>
+          <div><b>19×</b><span>bir yilda o‘sish</span></div>
+          <div><b>6 xonali</b><span>kod bilan ulanasiz</span></div>
+        </div>
+      </div>
+      <!-- teacher copy -->
+      <div class="hc t-only tg-ms-only">
+        <span class="pill rv"><b>Yangi</b>Fundamental fan o‘qituvchilariga 50% ustama e’lon qilindi</span>
+        <h1 class="rv" style="--d:.06s">B+ oling — maoshingizga <em class="s">ustama</em> qo‘shiladi.</h1>
+        <p class="lead rv" style="--d:.12s">Diagnostika B+ gacha qancha qolganini ko‘rsatadi. Ishdan keyin kuniga 20 daqiqa — AI reja tuzadi, xatolarni tushuntiradi, imtihon sessiyasiga ulgurasiz.</p>
+        <div class="facts rv" style="--d:.18s">
+          <div><b>20%</b><span>fan o‘qituvchilari, B+</span></div>
+          <div><b>50%</b><span>ona tili o‘qituvchilari</span></div>
+          <div><b>3 yil</b><span>ustama muddati</span></div>
+        </div>
+      </div>
+      <div class="hc t-only tg-att-only">
+        <span class="pill rv"><b>Attestatsiya</b>60 · 70 · 80 ball — toifa chegaralari</span>
+        <h1 class="rv" style="--d:.06s">Attestatsiyadan <em class="s">yuqori toifa</em> bilan o‘ting.</h1>
+        <p class="lead rv" style="--d:.12s">O‘z faningiz bo‘yicha savollar, AI tushuntirish va har test tahlili. Keyingi toifagacha necha ball qolganini har kuni ko‘rasiz.</p>
+        <div class="facts rv" style="--d:.18s">
+          <div><b>60+</b><span>ikkinchi toifa</span></div>
+          <div><b>70+</b><span>birinchi toifa</span></div>
+          <div><b>80+</b><span>oliy toifa</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo rv" style="--d:.1s" id="demo" aria-live="polite">
+      <!-- student: direction → portfolio -->
+      <div id="st-dir" class="s-only">
+        <div class="psum" id="mainsSum" hidden></div>
+        <div id="mainsEdit">
+          <h3>Asosiy fanlaringizni tanlang <span class="h3s">2 tagacha</span></h3>
+          <div class="chips" id="mains" role="group" aria-label="Asosiy fanlarni tanlash"></div>
+        </div>
+        <div class="need-box" id="needBox"></div>
+        <button class="btn btn-p btn-block" id="startS">Diagnostikani boshlash <svg width="18" height="18"><use href="#i-arrow"/></svg></button>
+        <p class="demo-meta">3 savollik demo · 2 daqiqa · ro‘yxatsiz</p>
+      </div>
+      <!-- teacher: subject + salary → bonus -->
+      <div id="st-teacher" class="t-only">
+        <div class="psum" id="tSum" hidden></div>
+        <div id="tEdit">
+        <h3>Qaysi fanni o‘qitasiz?</h3>
+        <div class="chips" id="tsubj" role="group" aria-label="Fan tanlash"></div>
+        <div class="goals" id="tgoals" role="group" aria-label="Maqsad">
+          <button class="tg-goal" data-g="ms"><b>Milliy sertifikat</b><small>B+ va ustama</small></button>
+          <button class="tg-goal" data-g="att"><b>Attestatsiya</b><small>Malaka toifasi</small></button>
+        </div>
+        </div>
+        <div class="tg-ms-only">
+        <div class="fld"><label for="salary">Oylik maoshingiz, so‘m</label><input class="inp" id="salary" inputmode="numeric" autocomplete="off" value="5 000 000"></div>
+        <div class="calc" id="calc"></div>
+        <p class="pend" id="pend" hidden></p>
+        </div>
+        <div class="att tg-att-only">
+          <div class="att-h">Attestatsiya · toifa chegaralari</div>
+          <div class="att-r"><b>60+</b><span>Ikkinchi toifa · katta o‘qituvchi</span></div>
+          <div class="att-r"><b>70+</b><span>Birinchi toifa · yetakchi o‘qituvchi</span></div>
+          <div class="att-r"><b>80+</b><span>Oliy toifa · bosh o‘qituvchi</span></div>
+          <p>55–59 ball — lavozim saqlanadi · 55 dan past — o‘tilmagan</p>
+        </div>
+        <button class="btn btn-p btn-block" id="startT"><span id="startTl">B+ gacha qancha qoldi?</span> <svg width="18" height="18"><use href="#i-arrow"/></svg></button>
+        <p class="demo-meta">3 savollik demo · 2 daqiqa · ro‘yxatsiz</p>
+      </div>
+      <!-- parent: connect in 3 steps -->
+      <div id="st-par" class="p-only">
+        <h3>Farzandingizni 3 qadamda ulang</h3>
+        <ol class="pl-st">
+          <li><b>1</b><div><strong>Farzandingiz diagnostikadan o‘tadi</strong><small>10 daqiqa · bepul</small></div></li>
+          <li><b>2</b><div><strong>Profilida 6 xonali kod chiqadi</strong><small>Kodni sizga yuboradi</small></div></li>
+          <li><b>3</b><div><strong>Kodni Telegram botimizga yuborasiz</strong><small>Har yakshanba hisobot keladi</small></div></li>
+        </ol>
+        <button class="btn btn-p btn-block" data-toast="Haqiqiy saytda havola nusxalanadi — uni farzandingizga Telegram’da yuborasiz.">Havolani farzandimga yuborish <svg width="18" height="18"><use href="#i-share"/></svg></button>
+        <button class="btn btn-s btn-block" data-toast="Haqiqiy saytda Telegram bot ochiladi va farzandingiz kodini so‘raydi.">Menda kod bor — botni ochish</button>
+        <p class="demo-meta">Faqat natija ko‘rinadi · yozishmalar ko‘rinmaydi</p>
+      </div>
+      <!-- quiz -->
+      <div id="st-quiz" hidden>
+        <div class="qh"><span id="qSubj">Diagnostika · Matematika</span><span class="mono" id="qNum">1 / 3</span></div>
+        <div class="segs" id="segs"><i></i><i></i><i></i></div>
+        <p class="qt" id="qText"></p>
+        <div class="opts" id="opts"></div>
+        <div id="fbWrap"></div>
+      </div>
+      <!-- result -->
+      <div id="st-res" hidden class="res"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHER RULES -->
+<section class="sec t-only tg-ms-only" id="oqituvchi">
+  <div class="wrap split">
+    <div class="copy">
+      <div class="lab rv"><b>01</b><i></i>O‘qituvchilar uchun</div>
+      <h2 class="rv">B+ — bu shunchaki daraja emas, <em class="s">maosh.</em></h2>
+      <p class="desc rv">Ustama sertifikat amal qilgan davrda, ko‘pi bilan 3 yil to‘lanadi. Bir nechta sertifikat bo‘lsa — eng kattasi hisoblanadi. B dan pastda ustama yo‘q, shuning uchun maqsad aniq: B+.</p>
+      <ul class="points rv">
+        <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Ishdan keyin 20 daqiqalik kechki mashqlar</li>
+        <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Boshlang‘ich sinf o‘qituvchilari uchun alohida savollar bazasi</li>
+        <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Qoidalar o‘zgarsa — shu yerda darhol yangilanadi</li>
+      </ul>
+    </div>
+    <div class="card rules rv">
+      <div class="rule"><b>Fan o‘qituvchilari</b><span class="p">20%</span><small>B+ va undan yuqori · matematika, fizika, kimyo, biologiya, tarix, geografiya</small></div>
+      <div class="rule"><b>Ona tili va o‘zbek tili</b><span class="p">50%</span><small>Milliy sertifikat bilan · 2025-yil boshidan</small></div>
+      <div class="rule"><b>Boshlang‘ich sinf</b><span class="p">15%</span><small>B+ va yuqori · 2026/2027 o‘quv yilidan · 411-son qaror, 29.07.2026</small></div>
+      <div class="rule pd"><b>Fundamental fanlar<span class="badge">Kutilmoqda</span></b><span class="p">50%</span><small>30.09.2026 da e’lon qilindi · kuchga kirish sanasi hali aniq emas</small></div>
+      <div class="rules-f">Foizlar amaldagi qarorlar bo‘yicha. Ta’til oylarida ustama to‘xtatilishi mumkin.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ATTESTATION (teachers) -->
+<section class="sec t-only tg-att-only" id="attestatsiya">
+  <div class="wrap split">
+    <div class="copy">
+      <div class="lab rv"><b>01</b><i></i>Attestatsiya</div>
+      <h2 class="rv">Toifa — bu ham maosh, ham <em class="s">xotirjamlik.</em></h2>
+      <p class="desc rv">Attestatsiyada ball toifani belgilaydi: yuqoriga ko‘tarilasiz, saqlab qolasiz yoki pastga tushasiz. Majburiy attestatsiyadan ikki marta o‘ta olmaslik ish joyiga ta’sir qiladi — shuning uchun oldindan tayyorlanish muhim.</p>
+      <ul class="points rv">
+        <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Har fan bo‘yicha rasmiy spetsifikatsiyaga mos savollar</li>
+        <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Keyingi toifagacha necha ball qolgani — har testdan keyin</li>
+        <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Ariza va test sanalari — Telegram’da eslatma</li>
+      </ul>
+    </div>
+    <div class="card rules rv">
+      <div class="rule"><b>Mutaxassis → ikkinchi toifa</b><span class="p">60+</span><small>55–59 — lavozim saqlanadi · 55 dan past — o‘tilmagan</small></div>
+      <div class="rule"><b>Ikkinchi → birinchi toifa</b><span class="p">70+</span><small>60–69 — ikkinchi toifa saqlanadi</small></div>
+      <div class="rule"><b>Birinchi → oliy toifa</b><span class="p">80+</span><small>70–79 — birinchi toifa saqlanadi</small></div>
+      <div class="rule"><b>Oliy toifani saqlash</b><span class="p">80+</span><small>80 dan past — birinchi toifaga tushiladi</small></div>
+      <div class="rules-f">Vazirlar Mahkamasining 2021-yil 572-son qarori asosida. Bahorgi attestatsiya: ariza yanvar–fevral, test mart–may.</div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDENT PORTFOLIO -->
+<section class="sec s-only" id="portfel">
+  <div class="wrap split">
+    <div class="copy">
+      <div class="lab rv"><b>01</b><i></i>Sertifikatlarim</div>
+      <h2 class="rv">Qaysi biri bor, qaysi biri qoldi — <em class="s">bir qarashda.</em></h2>
+      <p class="desc rv">Tanlagan fanlaringiz bo‘yicha keyingi imtihon sanasi va ro‘yxatdan o‘tish muddati. Bittasini ham o‘tkazib yubormaysiz — muddatdan oldin Telegram’ga eslatma keladi.</p>
+    </div>
+    <div class="card pfc rv" id="pfc" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- LEVEL STORY (scroll-driven) -->
+<section class="sec lvstory" id="xarita">
+  <div class="wrap story-head m-head">
+    <div class="lab rv"><b>02</b><i></i><span class="np">Qanday o‘sasiz</span><span class="p-only">Farzandingiz qanday o‘sadi</span></div>
+    <h2 class="rv">C dan A+ gacha — <em class="s">qadamma-qadam.</em></h2>
+    <p class="desc rv"><span class="np">Pastga suring: har bir imkoniyat darajangizni bir pog‘ona ko‘taradi.</span><span class="p-only">Pastga suring: platforma farzandingizga nima beradi va darajasi qanday ko‘tariladi.</span></p>
+  </div>
+  <div class="story-track" id="storyTrack">
+    <div class="story-sticky" id="storySticky">
+      <div class="wrap story-g">
+        <div class="story-l">
+          <div class="d-head">
+            <div class="lab"><b>02</b><i></i><span class="np">Qanday o‘sasiz</span><span class="p-only">Farzandingiz qanday o‘sadi</span></div>
+            <h2>C dan A+ gacha — <em class="s">qadamma-qadam.</em></h2>
+            <p class="desc"><span class="np">Pastga suring: har bir imkoniyat darajangizni bir pog‘ona ko‘taradi.</span><span class="p-only">Pastga suring: platforma farzandingizga nima beradi va darajasi qanday ko‘tariladi.</span></p>
+          </div>
+          <div class="vals">
+            <div class="vals-h"><span>Platforma beradi</span><span class="mono" id="valN">1 / 6</span></div>
+            <div class="vals-bar"><i id="valBar"></i></div>
+            <div class="vals-t" id="valsT">
+              <div class="vc"><span class="vi" style="background:var(--accent-soft);color:var(--accent)"><svg width="20" height="20"><use href="#i-target"/></svg></span><div><q>Imtihonda nima tushishini bilmayman</q><b>Imtihonga eng yaqin savollar</b><p>Har Milliy sertifikat imtihonidan keyin savollar yangilanadi</p><span class="vr">Boshlanish: C</span></div></div>
+              <div class="vc"><span class="vi" style="background:var(--yellow-soft);color:var(--yellow-ink)"><svg width="20" height="20"><use href="#i-cal"/></svg></span><div><q>Nimani o‘qishni bilmayman</q><b>Eng ko‘p ball beradigan reja</b><p>Kuniga 20 daqiqa. Avval qaysi mavzu ko‘p ball keltirsa — o‘sha</p><span class="vr">C → C+</span></div></div>
+              <div class="vc"><span class="vi" style="background:var(--accent-soft);color:var(--accent)"><svg width="20" height="20"><use href="#i-spark"/></svg></span><div><q>Bir xil xatoni qayta-qayta qilaman</q><b>AI va xatolar daftari</b><p>Xatoni o‘zbekcha tushuntiradi va to‘g‘ri yechmaguningizcha qaytaradi</p><span class="vr">C+ → B</span></div></div>
+              <div class="vc"><span class="vi" style="background:var(--red-soft);color:var(--red)"><svg width="20" height="20"><use href="#i-play"/></svg></span><div><q>Javobni ko‘rdim, lekin tushunmadim</q><b>Har test tahlili</b><p>Har savolning qadamma-qadam yechimi. Tez orada — ustoz bilan video-tahlil</p><span class="vr">B → B+</span></div></div>
+              <div class="vc"><span class="vi" style="background:var(--surface2);color:var(--fg)"><svg width="20" height="20"><use href="#i-monitor"/></svg></span><div><q>Imtihonda hayajonlanib qolaman</q><b>Imtihon ekrani simulyatori</b><p>Imtihon oynasi, taymer va qoidalar — imtihondagidek. Imtihon kuni hammasi tanish bo‘ladi</p><span class="vr">B+ → A</span></div></div>
+              <div class="vc"><span class="vi" style="background:var(--green-soft);color:var(--green)"><svg width="20" height="20"><use href="#i-flag"/></svg></span><div><q>Qachon topshirsam ekan?</q><b>“Tayyormisiz?” signali</b><p>Qaysi sessiyada maqsad darajangizga yetishingizni ko‘rsatamiz</p><span class="vr">A → A+</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="story-r">
+          <div class="card lv">
+            <div class="lv-h">
+              <div class="lv-g"><b id="lvG">C</b><div><strong id="lvS">46,0</strong><small>taxminiy ball</small></div></div>
+              <span class="goalchip" id="lvGoal">Maqsad: B+</span>
+            </div>
+            <div class="lvmap" id="lvmap">
+              <svg viewBox="0 0 350 480" aria-hidden="true">
+                <path id="lvGuide" class="lv-fut"/>
+                <path id="lvProg" class="lv-prog"/>
+                <path id="lvTmp" fill="none" stroke="none"/>
+              </svg>
+              <div class="lvn" style="--x:110;--y:440">C<span class="th r">46+</span></div>
+              <div class="lvn" style="--x:245;--y:365">C+<span class="th l">50+</span></div>
+              <div class="lvn" style="--x:150;--y:290">B<span class="th r">55+</span></div>
+              <div class="lvn goal" style="--x:95;--y:210">B+<span class="th r tg">60+ · maqsad</span></div>
+              <div class="lvn" style="--x:240;--y:135">A<span class="th l">65+ · max ball</span></div>
+              <div class="lvn top" style="--x:175;--y:55">A+<span class="th r">70+</span></div>
+              <div class="lvc" id="lvChip">Siz</div>
+            </div>
+            <p class="lv-f">Namuna yo‘l · natija muntazam mashqqa bog‘liq</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 AI -->
+<section class="sec" id="ai">
+  <div class="wrap split rev">
+    <div class="copy">
+      <div class="lab rv"><b>03</b><i></i>AI ustoz</div>
+      <h2 class="rv">Tushunmadingizmi? AI <em class="s">boshqacha</em> tushuntiradi.</h2>
+      <p class="desc rv">Har bir xatoni bosing — AI o‘zbek tilida, qadamma-qadam yechib beradi. Tushunmasangiz, oddiyroq qilib, misol bilan qayta tushuntiradi. Pastdagi tugmalarni bosib ko‘ring.</p>
+    </div>
+    <div class="card chat rv" id="chat">
+      <div class="ctx">14-savol · Sizning javobingiz: 16 · To‘g‘ri: 12</div>
+      <div id="msgs" style="display:flex;flex-direction:column;gap:10px"></div>
+      <div class="sugs" id="sugs" hidden>
+        <button class="sug" data-k="sim">Shunga o‘xshash misol</button>
+        <button class="sug" data-k="rule">Qoidani eslatib bering</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 PARENTS -->
+<section class="sec alt p-only" id="ota-ona">
+  <div class="wrap split">
+    <div class="copy">
+      <div class="lab rv"><b>06</b><i></i>Haftalik hisobot</div>
+      <h2 class="rv">Hisobot <em class="s">shunday</em> ko‘rinadi.</h2>
+      <p class="desc rv">Har yakshanba kechqurun Telegram’ga keladi. Ro‘yxatdan o‘tish shart emas — farzandingiz bergan kod bilan ulanasiz. O‘qishni o‘zingiz kuzatib, kerak bo‘lsa vaqtida yordam berasiz.</p>
+      <ul class="points rv">
+        <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Faqat natija — shaxsiy yozishmalar ko‘rinmaydi</li>
+        <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Pro’ni farzandingiz uchun o‘zingiz to‘lashingiz mumkin</li>
+      </ul>
+      <div class="gift rv">
+        <button class="btn btn-p" data-toast="Haqiqiy saytda: farzandingiz kodi va to‘lov sahifasi ochiladi.">Farzandimga Pro sovg‘a qilish <svg width="18" height="18"><use href="#i-arrow"/></svg></button>
+        <span>Farzandingiz kodi bilan · bir martalik to‘lov, avtomatik yechilmaydi</span>
+      </div>
+    </div>
+    <div class="tg rv">
+      <div class="tg-h"><span class="av"><svg width="18" height="18"><use href="#i-logo"/></svg></span><div><b>Mentalis bot</b><small>bot</small></div></div>
+      <div class="tg-b">
+        <div class="tg-m">
+          <div class="tt">Haftalik hisobot · Aziz <span style="font-weight:400;color:var(--muted);font-size:12px">(namuna)</span></div>
+          <dl>
+            <dt>Mashq</dt><dd>5 kun / 7</dd>
+            <dt>To‘liq test</dt><dd>1 ta · <span class="up">B → B+</span></dd>
+            <dt>Seriya</dt><dd>12 kun</dd>
+            <dt>Zaif mavzu</dt><dd>Funksiyalar</dd>
+            <dt>Imtihongacha</dt><dd>47 kun</dd>
+          </dl>
+          <div class="tm">Yak, 19:00</div>
+        </div>
+        <div class="tg-btns"><span>To‘liq hisobot</span><span>Pro sovg‘a qilish</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 PRICING -->
+<!-- NATIJA: honest answers — measurement, fit, trust (does not repeat "Qanday o'sasiz") -->
+<section class="sec s-only" id="natija">
+  <div class="wrap">
+    <div class="nt-head">
+      <div class="lab rv"><b>04</b><i></i>Halol javob</div>
+      <h2 class="rv">Natijam rostan oshadimi?</h2>
+      <p class="desc rv">Kafolat bermaymiz: natija sizning mehnatingizga bog‘liq. Biz esa bu mehnat bekorga ketmasligini va o‘sishni har hafta ko‘rib turishingizni ta’minlaymiz.</p>
+    </div>
+    <div class="nt-top">
+      <figure class="nt-chart rv">
+        <figcaption>
+          <h3>O‘sayotganingizni har hafta ko‘rasiz</h3>
+          <p>Bir daraja — taxminan 4–5 ball (masalan, B 55 → B+ 60). Haftalik o‘lchovdan tezligingiz chiqadi va qaysi sessiyaga ulgurishingizni ko‘rsatamiz. Ulgurmasangiz, oldindan aytamiz — imtihon pulini bekorga to‘lamaysiz.</p>
+        </figcaption>
+        <div class="pc"><svg viewBox="0 0 560 264" role="img" aria-label="Namuna grafik: haftalik o‘lchovlar 52,6 balldan 56,8 ballgacha o‘sgan; shu tezlikda B+ chegarasi 60 ballga taxminan 7-haftada yetiladi">
+  <line x1="48" x2="528" y1="143.0" y2="143.0" class="pc-grid"/>
+  <text x="528" y="135.0" class="pc-ax" text-anchor="end">B · 55</text>
+  <line x1="48" x2="528" y1="58.0" y2="58.0" class="pc-goal"/>
+  <text x="528" y="50.0" class="pc-goal-t" text-anchor="end">B+ · 60 — maqsad</text>
+  <line x1="48" x2="528" y1="228" y2="228" class="pc-base"/>
+  <text x="48" y="252" class="pc-ax" text-anchor="middle">0</text><text x="144" y="252" class="pc-ax" text-anchor="middle">2</text><text x="240" y="252" class="pc-ax" text-anchor="middle">4</text><text x="336" y="252" class="pc-ax" text-anchor="middle">6</text><text x="432" y="252" class="pc-ax" text-anchor="middle">8</text><text x="528" y="252" class="pc-ax" text-anchor="middle">10</text>
+  
+  <polyline points="48,183.8 96,165.1 144,149.8 192,127.7 240,112.4" class="pc-line"/>
+  <line x1="240" y1="112.4" x2="384" y2="58.0" class="pc-proj"/>
+  <circle cx="48" cy="183.8" r="5" class="pc-dot"/><circle cx="96" cy="165.1" r="5" class="pc-dot"/><circle cx="144" cy="149.8" r="5" class="pc-dot"/><circle cx="192" cy="127.7" r="5" class="pc-dot"/><circle cx="240" cy="112.4" r="5" class="pc-dot"/>
+  <circle cx="384" cy="58.0" r="7" class="pc-hit"/>
+</svg>
+          <div class="pc-badge">Shu tezlikda B+ ga taxminan <b>7-haftada</b> yetasiz</div>
+        </div>
+        <p class="pc-note">Namuna: pastda — haftalar, chiziq — haftalik o‘lchovdagi taxminiy ball</p>
+      </figure>
+      <div class="nt-deal rv" style="--d:.06s">
+        <h3>Kim nima qiladi</h3>
+        <div class="nt-side">
+          <h4>Biz</h4>
+          <ul>
+            <li>Qaysi mavzu ko‘p ball yo‘qotayotganini topamiz</li>
+            <li>Har kuni nimani yechishni rejalashtiramiz</li>
+            <li>Xatoni to‘g‘ri yechmaguningizcha qaytaramiz</li>
+            <li>Darajangizni har hafta qayta o‘lchaymiz</li>
+          </ul>
+        </div>
+        <div class="nt-side you">
+          <h4>Siz</h4>
+          <ul>
+            <li>Kuniga 20 daqiqa mashq qilasiz</li>
+            <li>Xatolar daftarini oxirigacha yopasiz</li>
+            <li>Har 2 haftada bitta to‘liq test yechasiz</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="nt-bottom">
+      <div class="nt-fit rv">
+        <h3>Faqat Mentalis yetadimi?</h3>
+        <dl>
+          <div class="ok"><dt>Yetadi, agar</dt><dd>mavzularni maktabda yoki kursda o‘tgansiz, lekin xato qilasiz yoki vaqt yetmaydi.</dd></div>
+          <div class="wait"><dt>Avval dars kerak, agar</dt><dd>mavzuni umuman ko‘rmagansiz. Diagnostika buni ko‘rsatadi: o‘sha mavzuni ustoz bilan o‘rganing, mashqni shu yerda qiling.</dd></div>
+        </dl>
+      </div>
+      <div class="nt-trust rv" style="--d:.06s">
+        <h3>Ishonmasangiz — tekshirib ko‘ring</h3>
+        <p>Biz yangi platformamiz, sharhlarimiz hali yo‘q. Shuning uchun o‘z raqamlaringizga ishoning: har fandan birinchi to‘liq test — to‘liq tahlil va AI tushuntirishi bilan — bepul.</p>
+        <a href="#demo" class="btn btn-p">Bepul boshlash <svg width="18" height="18"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="narx">
+  <div class="wrap">
+    <div class="ptop">
+      <div>
+        <div class="lab rv"><b>08</b><i></i>Narxlar</div>
+        <h2 class="rv">Bepul boshlang. Kerak bo‘lsa <em class="s">kengaytiring.</em></h2>
+      </div>
+      <div class="toggle rv" role="group" aria-label="To‘lov davri">
+        <button aria-pressed="true" data-p="m">Oylik</button>
+        <button aria-pressed="false" data-p="q">3 oylik <small>−11%</small></button>
+      </div>
+    </div>
+    <div class="launch rv">
+      <span class="lb-tag">Ishga tushish taklifi</span>
+      <p><b>Birinchi 500 kishiga</b> Pro 3 oy davomida yarim narxda. Narx shu 3 oy davomida o‘zgarmaydi.</p>
+    </div>
+    <div class="plans">
+      <div class="card plan rv">
+        <div class="h">Bepul</div>
+        <div class="price"><b>0</b><span>so‘m</span></div>
+        <div class="pn">Har doim bepul</div>
+        <ul>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Har fandan birinchi to‘liq test</li>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Uning to‘liq tahlili: qaysi savol to‘g‘ri, qaysi xato</li>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Har savolga AI tushuntirishi</li>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Zaif mavzular va sertifikatlar rejasi</li>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Imtihon sanalari eslatmalari</li>
+          <li class="off"><svg width="16" height="16"><use href="#i-dash"/></svg>Keyingi testlar va xatolar daftari</li>
+          <li class="off"><svg width="16" height="16"><use href="#i-dash"/></svg>Imtihon ekrani simulyatori</li>
+        </ul>
+        <a href="#demo" class="btn btn-s btn-block">Bepul boshlash</a>
+      </div>
+      <div class="card plan pop rv" style="--d:.08s">
+        <div class="h">Pro <span>Tavsiya</span></div>
+        <div class="price"><b id="proP">29 900</b><span id="proU">so‘m / oy</span></div>
+        <div class="pn" id="proN">Bir martalik to‘lov · avtomatik yechilmaydi</div>
+        <ul>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Imtihonga eng yaqin savollar — cheksiz</li>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Eng ko‘p ball beradigan reja</li>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>AI va xatolar daftari</li>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Har test tahlili</li>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Imtihon ekrani simulyatori</li>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Haftalik qayta o‘lchov</li>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>“Tayyormisiz?” signali</li>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Ota-onaga haftalik hisobot</li>
+        </ul>
+        <a href="#demo" class="btn btn-p btn-block np">Pro’ni boshlash <svg width="18" height="18"><use href="#i-arrow"/></svg></a>
+        <button class="btn btn-p btn-block p-only" data-toast="Haqiqiy saytda: farzandingiz kodi va to‘lov sahifasi ochiladi.">Farzandimga sovg‘a qilish <svg width="18" height="18"><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="card plan rv" style="--d:.16s">
+        <div class="h">O‘quv markazlar</div>
+        <div class="price"><b style="font-size:32px;letter-spacing:-.04em">Kelishuv</b><span>asosida</span></div>
+        <div class="pn">10 va undan ortiq o‘quvchi uchun</div>
+        <ul>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Pro’dagi hamma narsa</li>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>O‘qituvchi paneli</li>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Guruh natijalari va reytingi</li>
+          <li><svg width="16" height="16" style="color:var(--accent)"><use href="#i-check"/></svg>Telegram guruh rejimi</li>
+        </ul>
+        <button class="btn btn-s btn-block" data-toast="Haqiqiy saytda bu yerda ariza formasi ochiladi.">Bog‘lanish</button>
+      </div>
+    </div>
+    <p class="paynote t-only" style="color:var(--green-ink);font-weight:500">O‘qituvchilar uchun: 5 mln maoshda Pro oylik narxi 20% ustamaning taxminan 3% iga teng.</p>
+    <p class="paynote s-only" style="color:var(--green-ink);font-weight:500">Pro’ni ota-onangiz to‘lashi mumkin — <button class="linkbtn" style="display:inline-block;padding:12px 2px;margin:-12px 0;font-size:inherit;text-decoration:underline;text-underline-offset:3px" data-toast="Haqiqiy saytda havola nusxalanadi — uni ota-onangizga yuborasiz. Ular to‘lab, har hafta natijangizni ko‘rib boradi.">ularga havola yuboring</button></p>
+    <p class="paynote p-only" style="color:var(--green-ink);font-weight:500">Ota-onalar uchun: Pro’ni farzandingiz kodi bilan bir marta to‘laysiz — obuna avtomatik yangilanmaydi.</p>
+    <p class="paynote">To‘lov: karta o‘tkazmasi · tez orada Payme va Click</p>
+  </div>
+</section>
+
+<!-- 10 FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap faq">
+    <div>
+      <div class="lab rv"><b>10</b><i></i>Savollar</div>
+      <h2 class="rv">Ko‘p so‘raladigan savollar</h2>
+      <p class="desc rv">Javob topilmasa — Telegram orqali yozing — tez orada javob beramiz.</p>
+    </div>
+    <div id="faqList"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding:0 0 88px">
+  <div class="wrap">
+    <div class="cta rv">
+      <h2 class="s-only">Kirishingizni <em class="s">bugun</em> rejalashtiring.</h2>
+      <p class="s-only">Fanlaringizni tanlang — kerakli sertifikatlar, daraja va imtihon sanalari bir zumda tayyor. Bepul.</p>
+      <h2 class="t-only">B+ ga yo‘lni <em class="s">bugun</em> boshlang.</h2>
+      <p class="t-only">10 savollik diagnostika — ustama chegarasigacha qancha qolganini bilasiz. Bepul.</p>
+      <h2 class="p-only">Farzandingiz bilan <em class="s">bugun</em> boshlang.</h2>
+      <p class="p-only">Havolani farzandingizga yuboring — u 10 daqiqalik diagnostikadan o‘tadi, siz esa har yakshanba natijasini ko‘rasiz.</p>
+      <div class="b">
+        <a href="#demo" class="btn btn-w np">Diagnostikani boshlash <svg width="18" height="18"><use href="#i-arrow"/></svg></a>
+        <button class="btn btn-w p-only" data-toast="Haqiqiy saytda havola nusxalanadi — uni farzandingizga Telegram’da yuborasiz.">Havolani farzandimga yuborish <svg width="18" height="18"><use href="#i-share"/></svg></button>
+        <button class="btn btn-o" data-toast="Haqiqiy saytda Telegram orqali kirish oynasi ochiladi.">Telegram orqali kirish</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div><span class="logo"><i><svg width="18" height="18"><use href="#i-logo"/></svg></i>Mentalis</span><p>Milliy sertifikatga tayyorgarlik: rasmiy formatdagi testlar, daraja xaritasi va AI ustoz.</p></div>
+      <div class="fcols">
+        <div><h4>Platforma</h4><a href="#xarita" style="text-decoration:none">Daraja xaritasi</a><a href="#narx" style="text-decoration:none">Narxlar</a><span>Blog</span></div>
+        <div><h4>Yordam</h4><a href="#faq" style="text-decoration:none">Savollar</a><span>Telegram bot</span><span>Bog‘lanish</span></div>
+        <div><h4>Huquqiy</h4><span>Foydalanish shartlari</span><span>Maxfiylik siyosati</span></div>
+      </div>
+    </div>
+    <p class="disc">Mentalis — mustaqil platforma, Bilim va malakalarni baholash agentligi bilan bog‘liq emas. Savollarni rasmiy fan dasturi asosida o‘z mualliflarimiz tuzadi.</p>
+    <div class="fb2"><span>© 2026 Mentalis</span><span>Toshkent, O‘zbekiston</span></div>
+  </div>
+</footer>
+
+<div class="stk" id="stk-bar"><a href="#demo" class="btn btn-p btn-block"><span id="stkLabel">Qaysi sertifikat kerak?</span> <svg width="18" height="18"><use href="#i-arrow"/></svg></a></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(() => {
+const hideSvg = r => (r.matches && r.matches('svg') ? [r] : [...r.querySelectorAll('svg')]).forEach(v => { if (!v.hasAttribute('aria-label')) { v.setAttribute('aria-hidden', 'true'); v.setAttribute('focusable', 'false'); } });
+hideSvg(document);
+new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => { if (n.nodeType === 1) hideSvg(n); }))).observe(document.body, { childList: true, subtree: true });
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const ICON = id => `<svg width="16" height="16"><use href="#${id}"/></svg>`;
+
+/* toast */
+let tt;
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 4000); }
+document.addEventListener('click', e => { const b = e.target.closest('[data-toast]'); if (b) toast(b.dataset.toast); });
+
+/* nav */
+const nav = $('#nav');
+const onScroll = () => nav.classList.toggle('sc', scrollY > 24);
+addEventListener('scroll', onScroll, { passive: true }); onScroll();
+const sheet = $('#sheet'), burger = $('#burger');
+const setSheet = open => { sheet.hidden = !open; burger.setAttribute('aria-expanded', open); document.body.style.overflow = open ? 'hidden' : ''; };
+burger.addEventListener('click', () => setSheet(true));
+$('#close').addEventListener('click', () => setSheet(false));
+$$('#sheet a').forEach(a => a.addEventListener('click', () => setSheet(false)));
+
+/* ---------- role ---------- */
+let role = 's', stage = 'pick';
+const fmt = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+function showStage() {
+  $('#st-dir').hidden = stage !== 'pick';
+  $('#st-teacher').hidden = stage !== 'pick';
+  $('#st-par').hidden = stage !== 'pick';
+  $('#st-quiz').hidden = stage !== 'quiz';
+  $('#st-res').hidden = stage !== 'res';
+}
+function layout() {
+  const secs = $$('main .sec').filter(s => s.offsetParent !== null);
+  let n = 0;
+  secs.forEach(s => { const bs = s.querySelectorAll('.lab b'); if (bs.length) { const t = String(++n).padStart(2, '0'); bs.forEach(b => b.textContent = t); } });
+  secs.filter(s => s.id !== 'faq').forEach((s, i) => s.classList.toggle('alt', i % 2 === 1));
+}
+const ooSec = $('#ota-ona'), ooHome = document.createComment('ota-ona home'); ooSec.before(ooHome);
+function setRole(r, save = true) {
+  role = r; document.body.dataset.role = r;
+  $('#rolePillT').textContent = { t: 'O‘qituvchi', p: 'Ota-ona', s: 'O‘quvchi' }[r];
+  if (r === 'p') $('.hero').after(ooSec); else ooHome.after(ooSec);
+  stage = 'pick'; showStage(); layout(); renderFaq();
+  $('#stkLabel').textContent = { t: 'Ustamani hisoblash', p: 'Farzandimni ulash', s: 'Qaysi sertifikat kerak?' }[r];
+  dispatchEvent(new Event('resize'));
+  if (save) { try { localStorage.setItem('lu_role_v4', r); } catch (e) {} }
+}
+/* role gate popup: 1) role  2) main subjects (students) */
+const gate = $('#gate');
+function gateStep(n) { $('#gStep1').hidden = n !== 1; $('#gStep2').hidden = n !== 2; $('#gStep2t').hidden = n !== 't'; if (n === 2) renderChips(); if (n === 't') renderTeacherPicks(); }
+function openGate() {
+  gateStep(1); gate.classList.remove('out'); gate.hidden = false; document.body.style.overflow = 'hidden';
+  setTimeout(() => $('.gate-c').focus({ preventScroll: true }), 50);
+}
+function closeGate() {
+  gate.classList.add('out'); document.body.style.overflow = '';
+  setTimeout(() => { gate.hidden = true; gate.classList.remove('out'); }, RM ? 0 : 300);
+}
+gate.addEventListener('click', e => {
+  const b = e.target.closest('[data-pick]'); if (!b) return;
+  if (b.dataset.pick === 's') { gateStep(2); return; }
+  if (b.dataset.pick === 'p') { setRole('p'); scrollTo({ top: 0 }); closeGate(); return; }
+  gateStep('t');
+});
+$$('[data-back]', gate).forEach(b => b.addEventListener('click', () => gateStep(1)));
+$('#gGo').addEventListener('click', () => {
+  if (!chosen.length) return;
+  mainsLocked = true; setRole('s'); saveMains(); renderNeed(); scrollTo({ top: 0 }); closeGate();
+});
+gate.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.body.dataset.role && (mainsLocked || tLocked || role === 'p')) { closeGate(); return; }
+  if (e.key !== 'Tab') return;
+  const f = $$('button:not([hidden])', gate).filter(x => x.offsetParent), i = f.indexOf(document.activeElement);
+  e.preventDefault(); f[(i + (e.shiftKey ? f.length - 1 : 1)) % f.length].focus();
+});
+$('#rolePill').addEventListener('click', openGate);
+
+/* ---------- student: main subjects → needed certificates ---------- */
+const MAINS = ['Matematika', 'Ingliz tili', 'Fizika', 'Kimyo', 'Biologiya', 'Ona tili', 'Tarix', 'Geografiya'];
+const MAND = [['Ona tili', 'ona tili'], ['Matematika', 'matematika'], ['Tarix', 'tarix']];
+let chosen = [], mainsLocked = false;
+try { const m = JSON.parse(localStorage.getItem('lu_mains_v4') || 'null'); if (Array.isArray(m) && m.length && m.every(x => MAINS.includes(x))) { chosen = m.slice(0, 2); mainsLocked = true; } } catch (e) {}
+const saveMains = () => { try { localStorage.setItem('lu_mains_v4', JSON.stringify(chosen)); } catch (e) {} };
+const chipHTML = MAINS.map(s => `<button class="chip nums" data-m="${s}"><span class="no"></span>${s}</button>`).join('');
+$('#mains').innerHTML = chipHTML + `<button class="chip more" data-toast="Haqiqiy saytda: huquq, adabiyot, chet tillari va boshqa fanlar.">+3</button>`;
+$('#gMains').innerHTML = chipHTML;
+function needLine() {
+  const rest = MAND.filter(([k]) => !chosen.includes(k)).map(([, n]) => n);
+  return { rest, total: chosen.length + rest.length };
+}
+function renderChips() {
+  ['#mains', '#gMains'].forEach(sel => $$(sel + ' [data-m]').forEach(c => { const i = chosen.indexOf(c.dataset.m); c.setAttribute('aria-pressed', i > -1); c.querySelector('.no').textContent = i > -1 ? i + 1 : ''; }));
+  const { total } = needLine();
+  $('#gSum').innerHTML = chosen.length ? `Sizga <b>${total} ta sertifikat</b> kerak bo‘ladi — hammasi bo‘lsa, imtihonsiz kirasiz.` : 'Kamida bitta fanni tanlang.';
+  $('#gGo').disabled = !chosen.length; $('#gGo').style.opacity = chosen.length ? '' : .5;
+}
+function renderMainsSum() {
+  const lock = mainsLocked && chosen.length > 0;
+  $('#mainsSum').hidden = !lock; $('#mainsEdit').hidden = lock;
+  if (lock) $('#mainsSum').innerHTML = `<span class="psum-l">Fanlaringiz</span>${chosen.map((c, i) => `<span class="psum-c"><i>${i + 1}</i>${c}</span>`).join('')}<button class="psum-e" id="editMains">O‘zgartirish</button>`;
+}
+document.addEventListener('click', e => { if (e.target.closest('#editMains')) { openGate(); gateStep(2); } if (e.target.closest('#editT')) { openGate(); gateStep('t'); } });
+
+/* ---------- Sertifikatlarim: plan from chosen subjects ---------- */
+/* BMBA 2026-yil 2-yarmi jadvali (infoedu.uz). Haqiqiy saytda admin kalendaridan keladi. */
+const EXAM = { 'Matematika': '2026-11-23', 'Fizika': '2026-11-24', 'Kimyo': '2026-11-22', 'Biologiya': '2026-11-21', 'Ona tili': '2026-12-26', 'Tarix': '2026-12-29', 'Geografiya': '2026-12-25' };
+const SESS = {
+  'Matematika': ['23–24-noyabr', '2026-10-30'], 'Fizika': ['24-noyabr', '2026-10-30'], 'Kimyo': ['22-noyabr', '2026-10-30'],
+  'Biologiya': ['21-noyabr', '2026-10-30'], 'Ona tili': ['26–28-dekabr', '2026-12-04'], 'Tarix': ['29-dekabr', '2026-12-04'],
+  'Geografiya': ['25-dekabr', '2026-12-04'],
+};
+const FULL = { 'Ona tili': 'Ona tili va adabiyot', 'Tarix': 'O‘zbekiston tarixi', 'Ingliz tili': 'Ingliz tili (CEFR)' };
+const MONTHS = ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr'];
+const tashToday = () => new Date(Date.now() + 5 * 3600e3).toISOString().slice(0, 10);
+function regPill(subj) {
+  const x = SESS[subj];
+  if (!x) return ['soon', 'Sana e’lon qilinadi'];
+  const [, reg] = x, today = tashToday();
+  if (today > reg) return ['closed', 'Ro‘yxat yopildi'];
+  const d = Math.round((Date.parse(reg) - Date.parse(today)) / 864e5);
+  const label = `${+reg.slice(8)}-${MONTHS[+reg.slice(5, 7) - 1]}gacha`;
+  return [d <= 7 ? 'soon' : 'open', d <= 7 ? `Ro‘yxat: ${d} kun qoldi` : `Ro‘yxat: ${label}`];
+}
+function renderPlan() {
+  const box = $('#pfc'); if (!box) return;
+  if (!chosen.length) {
+    box.innerHTML = `<div class="pfc-e"><b style="font-size:16px">Sizning rejangiz</b><p>Asosiy fanlaringizni tanlang — har biri bo‘yicha keyingi imtihon sanasi va ro‘yxat muddati shu yerda chiqadi.</p><button class="btn btn-p btn-sm" id="planPick">Fanlarni tanlash</button></div>`;
+    return;
+  }
+  const rows = chosen.map((c, i) => [c, `Asosiy fan ${i + 1}`]).concat(MAND.filter(([k]) => !chosen.includes(k)).map(([k]) => [k, 'Majburiy']));
+  box.innerHTML = `<div class="pfc-h"><div><b>Sizning rejangiz</b><small>${chosen.join(' + ')} · ${rows.length} ta sertifikat</small></div><div class="prog"><span>0 / ${rows.length}</span><span class="tr"><i style="width:0"></i></span></div></div>`
+    + rows.map(([k, t]) => { const x = SESS[k], [cls, pill] = regPill(k);
+      return `<div class="pr"><span class="ic" style="background:var(--surface);color:var(--fg2)"><svg width="16" height="16"><use href="#i-cal"/></svg></span><div><b>${FULL[k] || k}</b><small>${t} · ${x ? 'imtihon ' + x[0] : 'CEFR jadvali alohida'}</small></div><span class="stt ${cls}">${pill}</span></div>`; }).join('')
+    + `<div class="pfc-f q">Qaysi daraja yetishini yo‘nalish va oliygoh tanlaganingizdan keyin ko‘rsatamiz. Sanalar — BMBA jadvali, 2026-yil 2-yarmi.</div>`;
+}
+document.addEventListener('click', e => { if (e.target.closest('#planPick')) { openGate(); gateStep(2); } });
+function renderNeed() {
+  renderChips(); renderMainsSum(); renderPlan();
+  const { rest, total } = needLine();
+  const box = $('#needBox');
+  if (!chosen.length) { box.innerHTML = '<div class="m">Kamida bitta asosiy fanni tanlang.</div>'; $('#startS').disabled = true; $('#startS').style.opacity = .5; return; }
+  $('#startS').disabled = false; $('#startS').style.opacity = '';
+  box.innerHTML = `<div class="t"><b>${total} ta</b><span>sertifikat kerak</span></div>
+    <div class="m"><b>${chosen.length}</b> ta asosiy${rest.length ? ` + <b>${rest.length}</b> ta majburiy (${rest.join(', ')})` : ' — majburiylar ham shu ichida'}</div>
+    <div class="ok"><svg width="14" height="14"><use href="#i-check"/></svg>Hammasi bo‘lsa — imtihonsiz talaba bo‘lasiz</div>`;
+  box.style.animation = 'none'; box.offsetHeight; box.style.animation = '';
+}
+function pick(s) {
+  const i = chosen.indexOf(s);
+  if (i > -1) chosen.splice(i, 1);
+  else if (chosen.length < 2) chosen.push(s);
+  else chosen[1] = s;
+  renderNeed();
+}
+$('#mains').addEventListener('click', e => { const b = e.target.closest('[data-m]'); if (!b) return; pick(b.dataset.m); saveMains(); });
+$('#gMains').addEventListener('click', e => { const b = e.target.closest('[data-m]'); if (b) pick(b.dataset.m); });
+renderNeed();
+
+/* ---------- teacher: subject + salary → bonus ---------- */
+const TS = ['Matematika', 'Ona tili', 'Fizika', 'Kimyo', 'Biologiya', 'Tarix', 'Geografiya', 'Boshlang‘ich sinf'];
+const FUND = ['Matematika', 'Fizika', 'Kimyo', 'Biologiya', 'Tarix', 'Geografiya'];
+let tsubj = 'Matematika', tgoal = 'ms', tLocked = false;
+try { const t = localStorage.getItem('lu_tsubj_v4'); if (TS.includes(t)) tsubj = t; const g = localStorage.getItem('lu_tgoal_v4'); if (['ms', 'att', 'both'].includes(g)) { tgoal = g; tLocked = true; } } catch (e) {}
+const tChips = TS.map(s => `<button class="chip" data-t="${s}"><svg class="ck" width="14" height="14"><use href="#i-check"/></svg>${s}</button>`).join('');
+$('#tsubj').innerHTML = tChips; $('#gTS').innerHTML = tChips;
+const goalsOf = g => g === 'both' ? ['ms', 'att'] : [g];
+function renderTeacherPicks() {
+  ['#tsubj', '#gTS'].forEach(sel => $$(sel + ' [data-t]').forEach(c => c.setAttribute('aria-pressed', c.dataset.t === tsubj)));
+  ['#tgoals', '#gGoals'].forEach(sel => $$(sel + ' [data-g]').forEach(c => c.setAttribute('aria-pressed', goalsOf(tgoal).includes(c.dataset.g))));
+  document.body.dataset.tgoal = tgoal;
+  $('#tSum').hidden = !tLocked; $('#tEdit').hidden = tLocked;
+  if (tLocked) $('#tSum').innerHTML = `<span class="psum-l">Fan</span><span class="psum-c">${tsubj}</span>${goalsOf(tgoal).map(g => `<span class="psum-c">${g === 'ms' ? 'Milliy sertifikat' : 'Attestatsiya'}</span>`).join('')}<button class="psum-e" id="editT">O‘zgartirish</button>`;
+  $('#startTl').textContent = tgoal === 'att' ? 'Toifaga qancha qoldi?' : tgoal === 'ms' ? 'B+ gacha qancha qoldi?' : 'Diagnostikani boshlash';
+}
+function toggleGoal(g) {
+  const cur = goalsOf(tgoal), has = cur.includes(g);
+  const next = has ? cur.filter(x => x !== g) : [...cur, g];
+  if (!next.length) return;
+  tgoal = next.length === 2 ? 'both' : next[0];
+  renderTeacherPicks(); layout();
+}
+const saveTeacher = () => { try { localStorage.setItem('lu_tsubj_v4', tsubj); localStorage.setItem('lu_tgoal_v4', tgoal); } catch (e) {} };
+$('#gTS').addEventListener('click', e => { const b = e.target.closest('[data-t]'); if (!b) return; tsubj = b.dataset.t; renderTeacherPicks(); calc(); });
+$('#gGoals').addEventListener('click', e => { const b = e.target.closest('[data-g]'); if (b) toggleGoal(b.dataset.g); });
+$('#tgoals').addEventListener('click', e => { const b = e.target.closest('[data-g]'); if (!b) return; toggleGoal(b.dataset.g); saveTeacher(); });
+$('#gGoT').addEventListener('click', () => { tLocked = true; setRole('t'); saveTeacher(); renderTeacherPicks(); layout(); calc(); scrollTo({ top: 0 }); closeGate(); });
+renderTeacherPicks();
+function rate(s) {
+  if (s === 'Ona tili') return [50, 'Shart: milliy sertifikat · 2025-yildan'];
+  if (s === 'Boshlang‘ich sinf') return [15, 'Shart: B+ va yuqori · 2026/2027 o‘quv yilidan'];
+  return [20, 'Shart: B+ va undan yuqori sertifikat'];
+}
+function calc() {
+  const sal = +($('#salary').value.replace(/\D/g, '')) || 0;
+  const [p, cond] = rate(tsubj), m = sal * p / 100;
+  $('#calc').innerHTML = `<div class="k"><span>Sizning ustamangiz</span><span class="pct">${p}%</span></div>
+    <div class="v">+${fmt(m)} <small>so‘m / oy</small></div>
+    <div class="y">3 yilda taxminan <b>${fmt(m * 36)} so‘m</b></div>
+    <div class="cond">${cond}</div>`;
+  const pd = $('#pend');
+  if (FUND.includes(tsubj)) { pd.hidden = false; pd.textContent = `30-sentabrda fundamental fanlar uchun 50% e’lon qilindi. Kuchga kirsa: +${fmt(sal * .5)} so‘m / oy.`; }
+  else pd.hidden = true;
+}
+$('#tsubj').addEventListener('click', e => { const b = e.target.closest('[data-t]'); if (!b) return; tsubj = b.dataset.t; renderTeacherPicks(); calc(); saveTeacher(); });
+$('#salary').addEventListener('input', calc);
+$('#salary').addEventListener('blur', () => { const v = $('#salary').value.replace(/\D/g, ''); $('#salary').value = v ? fmt(+v) : ''; });
+calc();
+
+/* ---------- diagnostic demo ---------- */
+const QB = {
+  'Matematika': [
+    { q: 'Agar 2x + 3 = 11 bo‘lsa, x² − x ifodaning qiymatini toping.', o: ['8', '12', '16', '20'], a: 1, t: 'Algebra', ex: '2x = 11 − 3 = 8, demak x = 4. x² − x = 16 − 4 = 12. Ko‘p uchraydigan xato — faqat x² ni (16) hisoblab qo‘yish.' },
+    { q: 'Arifmetik progressiyada a₁ = 3, d = 4. a₁₀ ni toping.', o: ['36', '39', '40', '43'], a: 1, t: 'Progressiyalar', ex: 'aₙ = a₁ + (n − 1)·d. a₁₀ = 3 + 9·4 = 39. 43 chiqsa — (n − 1) o‘rniga n olingan.' },
+    { q: 'log₂ 32 + log₃ 9 ifodaning qiymatini toping.', o: ['5', '6', '7', '8'], a: 2, t: 'Logarifmlar', ex: 'log₂ 32 = 5, chunki 2⁵ = 32. log₃ 9 = 2, chunki 3² = 9. Jami: 5 + 2 = 7.' },
+  ],
+  'Fizika': [
+    { q: 'Jism 10 m/s tezlik bilan 2 s davomida tekis harakatlandi. U qancha yo‘l bosdi?', o: ['5 m', '12 m', '20 m', '40 m'], a: 2, t: 'Kinematika', ex: 'Tekis harakatda s = v·t = 10·2 = 20 m. 5 m chiqsa — v ni t ga bo‘lib yuborilgan.' },
+    { q: 'Massasi 3 kg bo‘lgan jismga 12 N kuch ta’sir qilmoqda. Tezlanishni toping.', o: ['2 m/s²', '4 m/s²', '9 m/s²', '36 m/s²'], a: 1, t: 'Dinamika', ex: 'Nyutonning 2-qonuni: a = F / m = 12 / 3 = 4 m/s². 36 chiqsa — kuch massaga ko‘paytirilgan.' },
+    { q: 'Qarshiligi 6 Om bo‘lgan o‘tkazgichdan 2 A tok o‘tmoqda. Uchlaridagi kuchlanish?', o: ['3 V', '8 V', '12 V', '24 V'], a: 2, t: 'Elektr toki', ex: 'Om qonuni: U = I·R = 2·6 = 12 V. 3 V chiqsa — R ni I ga bo‘lib yuborilgan.' },
+  ],
+  'Kimyo': [
+    { q: 'Suvning (H₂O) molyar massasi nechaga teng?', o: ['16 g/mol', '17 g/mol', '18 g/mol', '20 g/mol'], a: 2, t: 'Molyar massa', ex: 'M(H₂O) = 2·1 + 16 = 18 g/mol. 17 chiqsa — vodorod bitta deb olingan.' },
+    { q: 'Quyidagilardan qaysi biri ishqoriy metall?', o: ['Kalsiy', 'Natriy', 'Alyuminiy', 'Temir'], a: 1, t: 'Davriy sistema', ex: 'Ishqoriy metallar — I A guruh: Li, Na, K… Kalsiy esa II A guruhda, u ishqoriy-yer metall.' },
+    { q: '1 mol modda tarkibida nechta zarracha bo‘ladi?', o: ['6,02·10²³', '3,01·10²³', '6,02·10²²', '1,2·10²⁴'], a: 0, t: 'Mol tushunchasi', ex: 'Bu Avogadro soni: Nₐ = 6,02·10²³ mol⁻¹. 3,01·10²³ — bu 0,5 mol.' },
+  ],
+  'Biologiya': [
+    { q: 'Fotosintez hujayraning qaysi organoidida boradi?', o: ['Mitoxondriya', 'Xloroplast', 'Ribosoma', 'Golji apparati'], a: 1, t: 'Hujayra', ex: 'Fotosintez xloroplastda boradi — unda xlorofill bor. Mitoxondriyada esa nafas olish (energiya ajralishi) boradi.' },
+    { q: 'Odamning somatik hujayralarida nechta xromosoma bor?', o: ['23', '44', '46', '48'], a: 2, t: 'Genetika', ex: 'Somatik hujayrada 23 juft, ya’ni 46 ta xromosoma bor. 23 ta — bu jinsiy hujayrada.' },
+    { q: 'Qaysi qon tomirlari qonni yurakka olib keladi?', o: ['Arteriyalar', 'Venalar', 'Kapillyarlar', 'Aorta'], a: 1, t: 'Qon aylanish', ex: 'Venalar qonni yurakka olib keladi, arteriyalar esa yurakdan olib ketadi. Aorta — eng katta arteriya.' },
+  ],
+  'Ona tili': [
+    { q: 'Qaysi so‘z ot so‘z turkumiga kiradi?', o: ['yugurdi', 'chiroyli', 'kitob', 'tez'], a: 2, t: 'So‘z turkumlari', ex: '“Kitob” — narsani bildiradi va “nima?” so‘rog‘iga javob beradi, demak ot. “Chiroyli” — sifat, “yugurdi” — fe’l, “tez” — ravish.' },
+    { q: '“Men kitobni o‘qidim” gapida “kitobni” qaysi gap bo‘lagi?', o: ['Ega', 'Kesim', 'To‘ldiruvchi', 'Hol'], a: 2, t: 'Gap bo‘laklari', ex: '“Nimani o‘qidim?” — “kitobni”. -ni qo‘shimchali so‘z vositasiz to‘ldiruvchi bo‘ladi.' },
+    { q: 'Qaysi qatorda sinonimlar berilgan?', o: ['katta — ulkan', 'issiq — sovuq', 'yozmoq — yozuv', 'ko‘z — qosh'], a: 0, t: 'Leksikologiya', ex: '“Katta” va “ulkan” ma’nosi yaqin — sinonim. “Issiq — sovuq” esa qarama-qarshi ma’noli, ya’ni antonim.' },
+  ],
+  'Tarix': [
+    { q: 'Amir Temur davlatining poytaxti qaysi shahar bo‘lgan?', o: ['Buxoro', 'Samarqand', 'Xiva', 'Toshkent'], a: 1, t: 'Temuriylar davri', ex: 'Amir Temur Samarqandni poytaxt qildi va uni yirik madaniy markazga aylantirdi.' },
+    { q: 'O‘zbekiston davlat mustaqilligi qachon e’lon qilingan?', o: ['1990-yil 20-iyun', '1991-yil 31-avgust', '1991-yil 1-sentabr', '1992-yil 8-dekabr'], a: 1, t: 'Mustaqillik', ex: 'Mustaqillik 1991-yil 31-avgustda e’lon qilingan, 1-sentabr esa Mustaqillik kuni deb belgilangan. 8-dekabr — Konstitutsiya qabul qilingan kun.' },
+    { q: 'Ulug‘bek rasadxonasi qaysi shaharda qurilgan?', o: ['Buxoro', 'Samarqand', 'Qo‘qon', 'Termiz'], a: 1, t: 'Temuriylar madaniyati', ex: 'Mirzo Ulug‘bek rasadxonasi XV asrda Samarqandda qurilgan.' },
+  ],
+  'Ingliz tili': [
+    { q: 'She ___ to school every day.', o: ['go', 'goes', 'going', 'gone'], a: 1, t: 'Present Simple', ex: 'He / she / it bilan Present Simple’da fe’lga -s / -es qo‘shiladi: she goes.' },
+    { q: 'I have lived here ___ 2015.', o: ['since', 'for', 'from', 'at'], a: 0, t: 'Present Perfect', ex: 'Aniq boshlanish nuqtasi (2015) bo‘lsa — since. Davomiylik (5 years) bo‘lsa — for.' },
+    { q: 'Choose the synonym of “big”.', o: ['large', 'small', 'narrow', 'short'], a: 0, t: 'Vocabulary', ex: '“Big” va “large” — ikkalasi ham “katta”. “Small” esa antonim.' },
+  ],
+  'Geografiya': [
+    { q: 'O‘zbekistonning eng baland nuqtasi qaysi?', o: ['Chimyon', 'Hazrati Sulton', 'Bobotog‘', 'Nurota'], a: 1, t: 'O‘zbekiston relyefi', ex: 'Hazrati Sulton cho‘qqisi (4643 m) Hisor tizmasida joylashgan — bu O‘zbekistonning eng baland nuqtasi.' },
+    { q: 'Dunyodagi eng katta okean qaysi?', o: ['Atlantika', 'Hind', 'Tinch', 'Shimoliy Muz'], a: 2, t: 'Gidrosfera', ex: 'Tinch okeani maydoni bo‘yicha eng katta — u Yer yuzasining qariyb uchdan birini egallaydi.' },
+    { q: 'O‘zbekistonda nechta viloyat bor?', o: ['10', '12', '13', '14'], a: 1, t: 'Ma’muriy bo‘linish', ex: '12 ta viloyat bor. Ular bilan birga Qoraqalpog‘iston Respublikasi va Toshkent shahri ham alohida birlik.' },
+  ],
+};
+let Q = [];
+function buildQuiz() {
+  const tag = (s, arr) => arr.map(x => ({ ...x, s }));
+  if (role === 't') {
+    const sfx = tgoal === 'att' ? ' · attestatsiya' : '';
+    if (tsubj === 'Boshlang‘ich sinf') return [...tag('Ona tili', QB['Ona tili'].slice(0, 1)), ...tag('Matematika', QB['Matematika'].slice(0, 1)), ...tag('Ona tili', QB['Ona tili'].slice(1, 2))];
+    return tag(tsubj + sfx, QB[tsubj] || QB['Matematika']);
+  }
+  const [a, b] = chosen;
+  if (!b) return tag(a, QB[a]);
+  return [...tag(a, QB[a].slice(0, 2)), ...tag(b, QB[b].slice(0, 1))];
+}
+let qi = 0, score = 0, wrong = [];
+function startQuiz() { Q = buildQuiz(); qi = 0; score = 0; wrong = []; $$('#segs i').forEach(s => s.className = ''); stage = 'quiz'; showStage(); renderQ(); }
+function renderQ() {
+  const d = Q[qi];
+  $('#qSubj').textContent = 'Demo · ' + d.s;
+  $('#qNum').textContent = `${qi + 1} / ${Q.length}`;
+  $$('#segs i').forEach((s, i) => { if (i === qi) s.className = 'cur'; });
+  $('#qText').textContent = d.q;
+  $('#opts').innerHTML = d.o.map((v, i) => `<button class="opt" data-i="${i}"><span class="k">${'ABCD'[i]}</span><span class="v">${v}</span><span class="st"></span></button>`).join('');
+  $('#fbWrap').innerHTML = '';
+}
+$('#startS').addEventListener('click', startQuiz);
+$('#startT').addEventListener('click', startQuiz);
+$('#opts').addEventListener('click', e => {
+  const b = e.target.closest('.opt'); if (!b || b.disabled) return;
+  const d = Q[qi], i = +b.dataset.i, ok = i === d.a;
+  $$('#opts .opt').forEach(o => o.disabled = true);
+  const right = $(`#opts .opt[data-i="${d.a}"]`);
+  right.classList.add('ok'); right.querySelector('.st').innerHTML = ICON('i-check') + 'To‘g‘ri javob';
+  if (!ok) { b.classList.add('no'); b.querySelector('.st').innerHTML = ICON('i-x') + 'Sizniki'; wrong.push({ t: d.t, s: d.s }); } else score++;
+  $$('#segs i')[qi].className = ok ? 'ok' : 'no';
+  const last = qi === Q.length - 1;
+  $('#fbWrap').innerHTML = (ok
+    ? `<div class="fb good"><div class="h">${ICON('i-check')}To‘g‘ri! ${d.t}</div>${d.ex}</div>`
+    : `<div class="fb ai"><div class="h"><svg width="15" height="15"><use href="#i-bulb"/></svg>AI tushuntirish</div>${d.ex}</div>`)
+    + `<button class="btn btn-p btn-block fb-next" id="next">${last ? 'Natijani ko‘rish' : 'Keyingi savol'} <svg width="18" height="18"><use href="#i-arrow"/></svg></button>`;
+  $('#next').addEventListener('click', () => { if (last) result(); else { qi++; renderQ(); $('#opts .opt').focus({ preventScroll: true }); } });
+  $('#next').focus({ preventScroll: true });
+});
+function result() {
+  const weakT = wrong.length ? wrong.map(w => `<span><svg width="13" height="13"><use href="#i-bulb"/></svg>${w.t}</span>`).join('') : '<span style="background:var(--green-soft);color:var(--green-ink)">Bu 3 savolda zaif mavzu yo‘q</span>';
+  const grade = `<div class="qh"><span>Demo natija</span><span class="mono">3 savol</span></div>
+    <div class="grade"><b>${score}<span class="of">/${Q.length}</span></b><div><small>to‘g‘ri javob</small><strong>Bu daraja emas — birinchi signal</strong></div></div>`;
+  if (role === 't') {
+    const sub = tgoal === 'att' ? 'Toifa chegaralari: 60 · 70 · 80 ball. Qaysi toifaga yaqinligingizni 10 savollik diagnostika ko‘rsatadi.' : 'B+ — ustama chegarasi. Unga qancha qolganini 10 savollik diagnostika ko‘rsatadi.';
+    $('#st-res').innerHTML = `${grade}
+      <div class="rs-h">Zaif mavzular</div><div class="weak">${weakT}</div>
+      <div class="acts">
+        <button class="btn btn-p btn-block" data-toast="Haqiqiy saytda: Google yoki Telegram orqali 10 soniyada ro‘yxatdan o‘tish.">Natijani saqlash va 10 savolga o‘tish</button>
+        <button class="linkbtn" id="again" style="color:var(--fg2);font-weight:500">Qaytadan boshlash</button>
+      </div>
+      <p class="demo-meta">${sub}</p>`;
+  } else {
+    // student: honest signal → priority topics → time left → daily question + friend challenge
+    const topics = wrong.length
+      ? `<ol class="rs-top">${wrong.map(w => `<li><b>${w.t}</b><small>${w.s}</small></li>`).join('')}</ol>`
+      : '<p class="rs-none">Bu 3 savolda zaif mavzu topilmadi — 10 savolda chuqurroq tekshiramiz.</p>';
+    const today = Date.parse(tashToday());
+    const next = chosen.filter(c => EXAM[c]).map(c => ({ c, d: Math.round((Date.parse(EXAM[c]) - today) / 864e5) })).filter(x => x.d > 0).sort((x, y) => x.d - y.d)[0];
+    const time = next ? `<div class="rs-row"><svg width="16" height="16"><use href="#i-cal"/></svg><span>${next.c} imtihonigacha <b>${next.d} kun</b> · kuniga 20 daqiqa ≈ <b>${Math.round(next.d * 20 / 60)} soat</b> mashq</span></div>` : '';
+    const tip = chosen.includes('Matematika') ? `<div class="rs-row tip"><svg width="16" height="16"><use href="#i-bulb"/></svg><span>Bilib qo‘ying: matematikada bitta ochiq savol 3,2 ball — oddiy yopiq savoldan 2,5 barobar ko‘p.</span></div>` : '';
+    $('#st-res').innerHTML = `${grade}
+      <div class="rs-h">${wrong.length ? 'Avval shu mavzular' : 'Zaif mavzular'}</div>${topics}
+      ${time}${tip}
+      <div class="acts">
+        <button class="btn btn-p btn-block" data-toast="Haqiqiy saytda Telegram bot ochiladi va har kuni zaif mavzuingizdan 1 ta savol yuboradi.">Har kuni 1 savol — Telegram’da <svg width="18" height="18"><use href="#i-arrow"/></svg></button>
+        <button class="btn btn-s btn-block" data-toast="Haqiqiy saytda havola nusxalanadi: do‘stingiz shu 3 savolni yechadi va natijalaringiz solishtiriladi.">Do‘stga yuborish: kim ko‘p yechadi? <svg width="18" height="18"><use href="#i-share"/></svg></button>
+        <div class="rs-links"><button class="linkbtn" data-toast="Haqiqiy saytda 10 savollik diagnostika ochiladi.">10 savolni hozir yechish</button><button class="linkbtn" id="again" style="color:var(--fg2);font-weight:500">Qaytadan boshlash</button></div>
+      </div>
+      <p class="demo-meta">Aniq darajangizni 10 savollik diagnostika ko‘rsatadi.</p>`;
+    $('#stkLabel').textContent = 'Har kuni 1 ta savol';
+  }
+  stage = 'res'; showStage();
+  $('#again').addEventListener('click', () => { stage = 'pick'; showStage(); if (role === 's') $('#stkLabel').textContent = 'Qaysi sertifikat kerak?'; });
+}
+
+/* reveal + section animations */
+const handlers = {
+  chat: () => runChat(),
+  pfc: el => el.classList.add('on'),
+};
+function count(el, to, dur, dec) {
+  if (RM) { el.textContent = to.toFixed(dec).replace('.', ','); return; }
+  const t0 = performance.now();
+  const step = now => { const p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3); el.textContent = (to * e).toFixed(dec).replace('.', ','); if (p < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in');
+  const h = e.target.id && handlers[e.target.id]; if (h) h(e.target);
+  io.unobserve(e.target);
+}), { threshold: .18, rootMargin: '0px 0px -40px 0px' });
+$$('.rv').forEach(el => io.observe(el));
+['#chat', '#pfc'].forEach(s => io.observe($(s)));
+
+/* scroll story: values slide left, level climbs */
+(() => {
+  const P = [[110, 440], [245, 365], [150, 290], [95, 210], [240, 135], [175, 55]];
+  const S = [46, 50, 55, 60, 65, 70], G = ['C', 'C+', 'B', 'B+', 'A', 'A+'], N = P.length;
+  const seg = (a, b) => { const m = (a[1] + b[1]) / 2; return ` C ${a[0]} ${m}, ${b[0]} ${m}, ${b[0]} ${b[1]}`; };
+  let d = `M ${P[0][0]} ${P[0][1]}`; const prefix = [d];
+  for (let i = 1; i < N; i++) { d += seg(P[i - 1], P[i]); prefix.push(d); }
+  const guide = $('#lvGuide'), prog = $('#lvProg'), tmp = $('#lvTmp');
+  guide.setAttribute('d', d); prog.setAttribute('d', d);
+  const lens = prefix.map(pd => { tmp.setAttribute('d', pd); return pd === prefix[0] ? 0 : tmp.getTotalLength(); });
+  const total = guide.getTotalLength();
+  prog.style.strokeDasharray = total;
+  const track = $('#storyTrack'), sticky = $('#storySticky'), valsT = $('#valsT'), cards = $$('#valsT .vc'), nodes = $$('#lvmap .lvn'), chip = $('#lvChip'), map = $('#lvmap');
+  let last = -1;
+  function update() {
+    const r = track.getBoundingClientRect(), span = r.height - sticky.offsetHeight;
+    let p = span > 0 ? -r.top / span : 0; p = Math.min(1, Math.max(0, p));
+    const f = Math.min(N - 1, Math.max(0, (p * 1.12 - .06) * (N - 1)));
+    if (Math.abs(f - last) < .001) return; last = f;
+    const i = Math.min(N - 2, Math.floor(f)), fr = f - i;
+    const L = lens[i] + (lens[i + 1] - lens[i]) * fr;
+    prog.style.strokeDashoffset = total - L;
+    const pt = guide.getPointAtLength(L), mw = map.clientWidth, mh = map.clientHeight;
+    const x = pt.x / 350 * mw, y = pt.y / 480 * mh, right = pt.x < 175;
+    chip.style.transform = `translate(${right ? x + 30 : x - 30}px, ${y}px) translate(${right ? '0' : '-100%'}, -50%)`;
+    const k = Math.floor(f + .02);
+    nodes.forEach((n, j) => n.classList.toggle('on', j <= k));
+    const sc = S[i] + (S[i + 1] - S[i]) * fr;
+    $('#lvS').textContent = sc.toFixed(1).replace('.', ',');
+    $('#lvG').textContent = G[k];
+    chip.textContent = (role === 'p' ? 'Farzand · ' : 'Siz · ') + sc.toFixed(1).replace('.', ',');
+    const goal = $('#lvGoal'); const reached = k >= 3; goal.classList.toggle('ok', reached); goal.textContent = reached ? 'Maqsad: B+ ✓' : 'Maqsad: B+';
+    const cw = cards[0].offsetWidth + 12;
+    valsT.style.transform = `translateX(${-f * cw}px)`;
+    const a = Math.round(f);
+    cards.forEach((c, j) => c.classList.toggle('on', j === a));
+    $('#valN').textContent = `${a + 1} / ${N}`;
+    $('#valBar').style.transform = `scaleX(${f / (N - 1)})`;
+  }
+  let raf = 0;
+  const req = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; update(); }); };
+  addEventListener('scroll', req, { passive: true });
+  addEventListener('resize', () => { last = -1; req(); });
+  update();
+})();
+
+/* chat */
+const AI_HEAD = `<div class="h"><svg width="12" height="12"><use href="#i-spark"/></svg>Mentalis AI</div>`;
+const msgs = () => $('#msgs');
+function addMsg(who, html) { const m = document.createElement('div'); m.className = 'msg ' + who; m.innerHTML = who === 'ai' ? AI_HEAD + html : html; msgs().appendChild(m); }
+function aiSay(html, delay = 1100) { return new Promise(r => { const t = document.createElement('div'); t.className = 'typing'; t.innerHTML = '<i></i><i></i><i></i>'; msgs().appendChild(t); setTimeout(() => { t.remove(); addMsg('ai', html); r(); }, RM ? 0 : delay); }); }
+const wait = ms => new Promise(r => setTimeout(r, RM ? 0 : ms));
+let chatDone = false;
+async function runChat() {
+  if (chatDone) return; chatDone = true;
+  await wait(300); addMsg('me', 'Nega 12? Men 16 chiqardim');
+  await aiSay('16 — bu x² ning o‘zi. Shart esa <b>x² − x</b> ni so‘rayapti: 16 dan x = 4 ni ayirasiz → <b>12</b>.');
+  await wait(700); addMsg('me', 'Oddiyroq tushuntira olasizmi?');
+  await aiSay('Albatta. Tasavvur qiling: x — 4 ta olma, x² — 16 ta olma. Sizdan “16 tadan 4 tasini olib tashlang” deyilyapti. Natija — 12.');
+  $('#sugs').hidden = false;
+}
+const ANS = {
+  sim: ['Shunga o‘xshash misol bering', 'Mana: <b>3x − 2 = 10</b> bo‘lsa, <b>x² + x</b> ni toping. Avval x ni toping, keyin ikkala hadni qo‘shing. Javobingizni yozing — tekshirib beraman.'],
+  rule: ['Qoidani eslatib bering', 'Ifoda qiymatini topish: 1) noma’lumni tenglamadan toping, 2) uni ifodaga <b>har bir</b> hadga qo‘ying, 3) amallarni tartib bilan bajaring. Xato ko‘pincha 2-qadamda — bitta had tushib qoladi.'],
+};
+$('#sugs').addEventListener('click', async e => { const b = e.target.closest('.sug'); if (!b || b.disabled) return; b.disabled = true; const [q, a] = ANS[b.dataset.k]; addMsg('me', q); await aiSay(a, 1200); });
+
+/* pricing toggle */
+$$('.toggle button').forEach(b => b.addEventListener('click', () => {
+  $$('.toggle button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  const q = b.dataset.p === 'q';
+  $('#proP').textContent = q ? '26 600' : '29 900';
+  $('#proU').textContent = 'so‘m / oy';
+  $('#proN').textContent = q ? '3 oy uchun 79 900 so‘m bir martada' : 'Bir martalik to‘lov · avtomatik yechilmaydi';
+}));
+
+/* faq */
+const FAQ = {
+  who: ['Savollarni kim tuzadi? Xato bo‘lsa-chi?', 'Savollarni fan o‘qituvchilari rasmiy fan dasturi asosida yozadi, ikkinchi mutaxassis tekshiradi. Har bir savolda “Xato topdim” tugmasi bor — xabaringiz ko‘rib chiqiladi va sizga javob beramiz.'],
+  ball: ['Natijadagi ball rasmiy ballmi?', 'Yo‘q, bu taxminiy ball. Rasmiy ball barcha ishtirokchilar natijasidan hisoblanadi. Biz uni platformadagi javoblaringiz asosida taxmin qilamiz — shuning uchun “taxminiy” deb yozamiz.'],
+  free: ['Qaysi sertifikatlar bo‘lsa, imtihonsiz o‘qishga kiriladi?', 'Yo‘nalishingizdagi barcha asosiy va majburiy fanlardan milliy yoki xalqaro sertifikat bo‘lsa, kirish testidan ozod bo‘lasiz va to‘g‘ridan-to‘g‘ri oliygoh tanlash bosqichiga o‘tasiz. 2026-yilda 12 997 abituriyent shu yo‘ldan foydalandi (2025-yilda — 678).'],
+  ust: ['O‘qituvchi sifatida qancha ustama olaman?', 'Amaldagi tartibda: fan o‘qituvchilariga B+ va yuqori uchun 20%, ona tili va o‘zbek tili o‘qituvchilariga 50%, boshlang‘ich sinf o‘qituvchilariga 2026/2027 o‘quv yilidan B+ va yuqori uchun 15%. 30-sentabrda fundamental fanlar uchun 50% e’lon qilindi — kuchga kirish sanasi kutilmoqda. Ustama ko‘pi bilan 3 yil to‘lanadi.'],
+  fmt: ['Testlar rasmiy Milliy sertifikat formatidami?', 'Ha, har fan o‘z rasmiy spetsifikatsiyasi bo‘yicha. Masalan, matematikada 45 topshiriq va 150 daqiqa. Ingliz tili esa CEFR formatida o‘tadi. Bitta javobli, moslashtiriladigan va javobi yoziladigan savollar bor. Natija C dan A+ gacha taxminiy daraja bilan ko‘rsatiladi.'],
+  reg: ['Diagnostika uchun ro‘yxatdan o‘tish shartmi?', 'Yo‘q. 10 savollik diagnostikani darhol yechasiz. Natijani saqlash va daraja xaritasini ochish uchun Google yoki Telegram orqali 10 soniyada kirasiz.'],
+  ai: ['AI tushuntirish qanday ishlaydi?', 'Noto‘g‘ri javobni bossangiz, AI o‘zbek tilida qadamma-qadam yechimni ko‘rsatadi va xatoingiz qayerda ekanini aytadi. Tushunmasangiz, oddiyroq yoki misol bilan qayta tushuntirishni so‘rashingiz mumkin.'],
+  net: ['Test paytida internet uzilsa nima bo‘ladi?', 'Har bir javob darhol saqlanadi. Internet qaytgach yoki qayta kirganingizda, test qolgan joyidan davom etadi. Taymer serverda yuradi, shuning uchun vaqt adolatli hisoblanadi.'],
+  par: ['Ota-ona qanday kuzatadi?', 'Farzandingiz profilidagi kodni Telegram botimizga yuborasiz. Har yakshanba qisqa hisobot keladi: mashq kunlari, daraja o‘zgarishi va zaif mavzular.'],
+  pay: ['To‘lov qanday amalga oshiriladi?', 'Bir marta to‘laysiz — 1 oy yoki 3 oyga. Obuna o‘zi yangilanmaydi, kartangizdan pul avtomatik yechilmaydi; muddat tugashidan oldin Telegram’da eslatamiz. Hozircha karta orqali o‘tkazma, to‘lov qo‘lda tasdiqlanadi. Tez orada Payme va Click qo‘shiladi.'],
+  see: ['Hisobotda nimalar ko‘rinadi?', 'Faqat natijalar: mashq qilgan kunlar, daraja o‘zgarishi, zaif mavzular va imtihongacha qolgan kun. AI bilan yozishmalar va boshqa shaxsiy ma’lumotlar ko‘rinmaydi.'],
+  gift: ['Pro’ni farzandimga qanday sovg‘a qilaman?', 'Farzandingiz kodini kiritasiz, muddatni tanlab bir marta to‘laysiz. Obuna avtomatik yangilanmaydi — kartangizdan o‘zi pul yechilmaydi.'],
+};
+const FAQ_ORDER = {
+  s: ['who', 'ball', 'free', 'fmt', 'reg', 'ai', 'net', 'pay'],
+  t: ['who', 'ball', 'ust', 'fmt', 'reg', 'ai', 'net', 'pay'],
+  p: ['par', 'see', 'free', 'who', 'fmt', 'gift', 'pay'],
+};
+function renderFaq() {
+  $('#faqList').innerHTML = FAQ_ORDER[role].map((k, i) => { const [q, a] = FAQ[k]; return `<div class="qa ${i === 0 ? 'open' : ''}"><button aria-expanded="${i === 0}">${q}<span class="pm"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg></span></button><div class="a"><div><p>${a}</p></div></div></div>`; }).join('');
+}
+$('#faqList').addEventListener('click', e => { const b = e.target.closest('.qa > button'); if (!b) return; const it = b.parentElement, open = !it.classList.contains('open'); $$('#faqList .qa').forEach(q => { q.classList.remove('open'); q.firstElementChild.setAttribute('aria-expanded', 'false'); }); if (open) { it.classList.add('open'); b.setAttribute('aria-expanded', 'true'); } });
+
+/* sticky mobile CTA */
+const stk = $('#stk-bar'); let demoVis = true; const ends = new Set();
+const so = new IntersectionObserver(es => { es.forEach(e => { if (e.target.id === 'demo') demoVis = e.isIntersecting; else if (e.isIntersecting) ends.add(e.target); else ends.delete(e.target); }); stk.classList.toggle('show', !demoVis && ends.size === 0); });
+so.observe($('#demo')); so.observe($('.cta')); so.observe($('footer')); so.observe($('#storyTrack'));
+
+/* initial role */
+let r0 = null;
+try { r0 = localStorage.getItem('lu_role_v4'); } catch (e) {}
+if (location.hash === '#oqituvchi') r0 = 't';
+if (location.hash === '#oquvchi') r0 = 's';
+if (location.hash === '#ota-onalar') r0 = 'p';
+setRole(['t', 'p'].includes(r0) ? r0 : 's', false);
+if (!r0) openGate();
+})();
+</script>
+
+</body></html>
